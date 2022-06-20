@@ -1,0 +1,85 @@
+import React, {useState, useContext, useEffect} from 'react';
+import UserContext from '../context/user/context';
+
+
+
+export const Profile = () => {
+
+
+    let  { usersArr } = useContext(UserContext)
+
+    const [input, setInput] = useState("")
+
+    const [result, setResult] = useState(null)
+
+    useEffect(() =>{
+        console.log("welcone")
+    }, [input])
+
+
+
+    const handleChange = (e) => {
+
+        let value = e.target.value;
+        setInput(value); 
+
+        let filtering = usersArr.filter((entry) => entry.firstname.toLowerCase().includes(input.toLowerCase()));
+        setResult(filtering)
+        
+    }
+    
+
+
+
+    return (
+        <>
+        
+            <h1>Profile</h1>
+            <input type="text" onChange={handleChange} />
+
+            {
+               result && result.map((each, i) => {
+                    return(
+                        <p key={i}>{each.firstname}</p>
+                    )
+                })
+            }
+
+
+        </>
+    )
+}
+
+
+
+//FRAMER MORTION
+
+The animate props in motion.tag takes the object that specify the END STATE OF THE ANIMATION we want. (i.e the point where the animation end);
+The initial props in motion.tag takes the object that specify the START STATE OF THE ANIMATION we want. (i.e the point where the animation start);
+
+animating using state change
+
+<motion.div
+    animate={{x : move ? "300" : "-200"}} //move is a state, x is the axis of moving
+    transition={{type="twin", duration:2}}
+    transition={{type="spring", bounce:2}}
+    transition={{type="inertia", velocity:40}}
+    transition={{delay:3}}
+>
+
+</motion.div>
+
+
+<motion.div
+    whileHover={{scale: 2}}  //so animation only happes when you hover
+>
+
+</motion.div>
+
+
+<motion.div
+animate={{rotate:[0, 200, 200, 0], x:[0, 200, 200, 0, -200, -200, 0]}}   //to specify keyframes (i.e what should happen at some point)
+transition={{repeat:inifinity, duration: 5}}  //repeat can be 2, 5, 6, base on the number of time you want the animation to repeat itself
+   >
+
+</motion.div>
