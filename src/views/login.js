@@ -5,6 +5,9 @@ import darkImg from '../media/login-office-dark.jpeg'
 import img from '../media/login-office.jpeg'
 import Logo from '../media/loder.png'
 import { Link } from 'react-router-dom'
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup';
+import UserContext from '../context/user/context'
 
 
 
@@ -12,6 +15,18 @@ import { Link } from 'react-router-dom'
 export const Login = () => {
 
     let { isDark } = useContext(UIContext)
+    let { login } = useContext(UserContext)
+
+
+    const LoginSchema = Yup.object().shape({
+        email: Yup.string()
+            .email('Invalid email')
+            .required('Email is required'),
+        password: Yup.string()
+            .required('Password is required')
+    });
+
+
 
     return (
         <>
@@ -35,21 +50,33 @@ export const Login = () => {
                                         <Theme />
                                     </div>
                                     <h1 className="mt-4 mb-7 text-xl font-semibold text-gray-700 dark:text-gray-200"> Login</h1>
-                                    <label className="block text-sm">
-                                        <span className="text-gray-700 dark:text-gray-400">Email</span>
-                                        <input className="block w-full mt-1 border p-2.5 text-sm font-medium dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
-                                    </label>
-                                    <label className="block mt-4 text-sm">
-                                        <span className="text-gray-700 dark:text-gray-400">Password</span>
-                                        <input className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="***************" type="password" />
-                                    </label>
 
-                                    {/* <!-- You should use a button here, as the anchor is only used for the example  --> */}
-                                    <Link to="/dashboard"
-                                        className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                    <Formik
+                                        validationSchema={LoginSchema}
+                                        initialValues={{ email: '', password: '' }}
+                                        onSubmit={(data) => login(data)}
                                     >
-                                        Log in
-                                    </Link>
+                                        <Form>
+                                            <label className="block text-sm">
+                                                <span className="text-gray-700 dark:text-gray-400">Email</span>
+                                                <Field name="email" className="block w-full mt-1 border p-2.5 text-sm font-medium dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="email" />
+                                                <ErrorMessage name="email" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                            </label>
+
+                                            <label className="block mt-4 text-sm">
+                                                <span className="text-gray-700 dark:text-gray-400">Password</span>
+                                                <Field name="password" className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="password" />
+                                                <ErrorMessage name="password" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                            </label>
+
+                                            {/* <!-- You should use a button here, as the anchor is only used for the example  --> */}
+                                            <button to="/dashboard"
+                                                className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
+                                            >
+                                                Log in
+                                            </button>
+                                        </Form>
+                                    </Formik>
 
                                     <hr className="my-8" />
 

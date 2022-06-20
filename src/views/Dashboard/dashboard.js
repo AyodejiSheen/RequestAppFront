@@ -1,6 +1,7 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { NavLink } from "react-router-dom";
 import UIContext from "../../context/UI/context";
+import UserContext from "../../context/user/context";
 import { Alert } from "../alert"
 
 
@@ -9,19 +10,13 @@ import { Alert } from "../alert"
 
 export const Dashboard = () => {
 
+    let {resources, usersArr, userId} = useContext(UserContext)
 
-    let { setAlert } = useContext(UIContext);
 
-    const submit = () => {
 
-        let res = {
-            altType: "danger",
-            data: ['john', 'mike'],
-            altMsg: "Wrong input"
-        }
-
-        setAlert(res)
-    }
+  useEffect(() => {
+    console.log(usersArr)
+  },[])
 
 
     return (

@@ -17,21 +17,16 @@ const UserReducers = (state, action) => {
 
         case SIGN_UP:
             return {
-                ...state, 
-                usersArr: [...state.usersArr, action.payload],
-                rstatus:true
-            }
-
-        case SIGN_UP_ERROR:
-            return{
                 ...state,
-                rstatus:false
+                usersArr: [...state.usersArr, action.payload.user],
             }
 
         case LOGIN:
             return {
                 ...state,
-                usersArr: [...state.usersArr, action.payload]
+                token: action.payload.token,
+                userId: action.payload.user.id,
+                usersArr: [...state.usersArr, action.payload.user],
             }
 
 

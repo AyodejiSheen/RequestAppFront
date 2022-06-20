@@ -13,6 +13,7 @@ import UIContext from './context/UI/context';
 import UserContext from './context/user/context';
 import { ForgotPassword } from './views/forgotPassword';
 import { Alert } from './views/alert';
+import { Errorpage } from './views/404';
 
 
 
@@ -42,6 +43,8 @@ function App() {
               <Route path='dashboard' element={<Navbar />}>
                 <Route index element={<Dashboard />}></Route>
               </Route>
+
+              <Route path='*' element={<Errorpage />}></Route>
 
             </Routes>
         </UserState>

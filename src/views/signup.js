@@ -20,7 +20,7 @@ export const Signup = () => {
 
     let { isDark, setAlert } = useContext(UIContext)
 
-    let { signup, status } = useContext(UserContext)
+    let { signup } = useContext(UserContext)
 
     const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export const Signup = () => {
 
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data, {resetForm}) => {
         console.log(data)
         let details = data;
         if (details.cpassword !== details.password) {
@@ -59,22 +59,8 @@ export const Signup = () => {
             }
             setAlert(res)
         } else {
-            const contextRes = await signup(data);
-            setTimeout(() => {
-                if(contextRes){
-                    let res = {
-                        altType: "success",
-                        altMsg: "Registered Successfully"
-                    }
-                    setAlert(res)
-                }else{
-                    let res = {
-                        altType: "danger",
-                        altMsg: "User already exist"
-                    }
-                    setAlert(res)
-                }
-            }, 1000)
+            await signup(data);
+            resetForm();
         }
     }
 
@@ -228,7 +214,7 @@ export const Signup = () => {
                                                     type='submit'
                                                     className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                                 >
-                                                    Create account
+                                                    Create Account
                                                 </button>
                                             </Form>
                                         </Formik>
