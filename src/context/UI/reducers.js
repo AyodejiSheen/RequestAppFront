@@ -1,43 +1,37 @@
-import { 
-    MOBILE_NAVBAR, 
-    SWITCH_THEME,
-    TOGGLE_NAV,
-    SET_ALERT,
-    REMOVE_ALERT
-    } 
+import {
 
-from "./actions";
+    SWITCH_THEME,
+    SET_ALERT,
+    REMOVE_ALERT,
+}
+
+    from "./actions";
 
 
 const UIReducers = (state, action) => {
 
-    switch(action.type){
+    switch (action.type) {
 
         case SWITCH_THEME:
             return {
                 ...state,
-                isDark:!state.isDark
-            }
-        
-        case TOGGLE_NAV:
-            return{
-                ...state,
-                mobileNav: !state.mobileNav
+                isDark: !state.isDark
             }
 
         case SET_ALERT:
             let res = action.payload;
-            return{
+            return {
                 ...state,
-                alert: {...alert, showAlert : true, msg : res.altMsg, type:res.altType },
+                alert: { ...alert, showAlert: true, msg: res.altMsg, type: res.altType },
             }
 
-            case REMOVE_ALERT:
-                return{
-                    ...state,
-                    alert: {...alert, showAlert : false, msg : null, type:null},
-                }
-            
+        case REMOVE_ALERT:
+            return {
+                ...state,
+                alert: { ...alert, showAlert: false, msg: null, type: null },
+            }
+
+
 
         default:
             return state;

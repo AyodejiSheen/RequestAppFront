@@ -4,14 +4,14 @@ import UIContext from "./context";
 
 
 import {
-    MOBILE_NAVBAR,
-    SWITCH_THEME,
-    TOGGLE_NAV,
-    SET_ALERT,
-    REMOVE_ALERT
-}
 
-    from "./actions";
+    SWITCH_THEME,
+    SET_ALERT,
+    REMOVE_ALERT,
+
+} from "./actions";
+
+
 
 
 
@@ -22,7 +22,6 @@ const UIState = (props) => {
     //initialstates for ui
     const initialState = {
         isDark: false,
-        mobileNav: false,
         alert:{showAlert:false, msg:null, type:null}
     }
 
@@ -37,17 +36,8 @@ const UIState = (props) => {
             type: SWITCH_THEME
         })
 
-        console.log(state.isDark)
     }
 
-
-    //to toggle Navbar
-    const toggleNav = (data) => {
-        dispatch({
-            type:TOGGLE_NAV,
-            payload:data
-        })
-    }
 
 
     //to set alert
@@ -65,15 +55,13 @@ const UIState = (props) => {
 
 
 
+
     return (
         <UIContext.Provider value={{
             isDark: state.isDark,
-            mobileNav: state.mobileNav,
             alert:state.alert,
             setAlert,
             switchTheme,
-            toggleNav
-
         }} >
 
             {props.children}

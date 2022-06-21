@@ -10,12 +10,12 @@ import { Alert } from "../alert"
 
 export const Dashboard = () => {
 
-    let {resources, usersArr, userId} = useContext(UserContext)
+    let {resources, user, userId} = useContext(UserContext)
 
 
 
   useEffect(() => {
-    console.log(usersArr)
+    console.log(user)
   },[])
 
 

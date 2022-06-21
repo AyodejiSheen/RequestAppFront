@@ -7,7 +7,7 @@ export const Theme = () => {
 
 
 
-    let { isDark, switchTheme, toggleNav, mobileNav } = useContext(UIContext)
+    let { isDark, switchTheme } = useContext(UIContext)
 
 
     return (

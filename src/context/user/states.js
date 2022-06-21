@@ -13,6 +13,7 @@ import {
     //import all the actions for user context api
 
     LOGIN,
+    SIGN_OUT,
     SIGN_UP,
     SIGN_UP_ERROR
 
@@ -25,12 +26,13 @@ const UserState = (props) => {
 
     //write all function and all the states for users
     const initialState = {
-        usersArr: [],
+        user: null,
         firstname: null,
         lastname: null,
         username: null,
-        token:null,
-        userId:null
+        token: null,
+        userId: null,
+        authState: false
     };
 
     const [state, dispatch] = useReducer(UserReducers, initialState);
@@ -83,8 +85,8 @@ const UserState = (props) => {
             } else {
                 localStorage.setItem("JWT", response.data.token);
                 dispatch({
-                    type:LOGIN,
-                    payload:response.data
+                    type: LOGIN,
+                    payload: response.data
                 })
                 setTimeout(() => {
                     let res = {
@@ -103,9 +105,27 @@ const UserState = (props) => {
 
 
 
-    //fetch request, user & dashboard data 
-    const resources =  () => {
 
+    //to logout user
+    const logout = () => {
+        localStorage.removeItem("JWT")
+        dispatch({
+            type: SIGN_OUT
+        });
+        let res = {
+            altType: "success",
+            altMsg: "You are Logged Out"
+        }
+        setAlert(res)
+        navigate('/');
+    }
+
+
+
+
+
+    //fetch request, user & dashboard data 
+    const resources = () => {
     }
 
 
@@ -117,10 +137,11 @@ const UserState = (props) => {
         <UserContext.Provider value={{
             signup,
             login,
+            logout,
             resources,
-            usersArr: state.usersArr,
+            user: state.user,
             isDark: state.isDark,
-            userId:state.userId
+            userId: state.userId
         }}>
             {/* to make the fuctions and state availabe everywhere */}
             {props.children}
