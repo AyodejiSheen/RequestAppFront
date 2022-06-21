@@ -26,7 +26,7 @@ export const Alert = () => {
     return (
         <>
 
-            <div className={isDark ? "dark" : "''"}>
+            <div className={isDark ? "dark" : "''"}>    
                 {
                     alert.showAlert &&
                     <AnimatePresence>  {/*AnimatePresence allows to use the exit attribute*/}
