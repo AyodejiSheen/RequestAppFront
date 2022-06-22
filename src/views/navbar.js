@@ -49,7 +49,7 @@ export const Navbar = () => {
 
                             <div className="mt-6">
                                 <div className="relative">
-                                    <NavLink to="/" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-100 dark:bg-gray-700 rounded border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-100 dark:bg-gray-700 rounded border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -149,7 +149,7 @@ export const Navbar = () => {
                             <div className="container flex items-center justify-between h-full px-6 lg:px-32 mx-auto text-purple-600">
                                 {/* mobile hambuger */}
 
-                                <button onClick={toggleNav} className="p-1 mr-5 -ml-1 rounded-lg md:hidden focus:outline-none focus:shadow-outline-purple">
+                                <button onClick={toggleNav} className=" focus:border-2 p-1 mr-5 -ml-1 rounded-lg md:hidden  focus:shadow-outline-purple">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                                     </svg>
