@@ -41,7 +41,7 @@ export const ProfileNav = (props) => {
                                 </div>
 
                                 <Link to="profile">
-                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50'>
+                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50 hover:dark:bg-gray-700'>
                                         <div className='flex gap-5 items-center'>
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:w-6 lg:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -59,7 +59,7 @@ export const ProfileNav = (props) => {
 
 
                                 <div>
-                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50'>
+                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50 hover:dark:bg-gray-700'>
                                         <div className='flex gap-5 items-center'>
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:w-6 lg:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -78,7 +78,7 @@ export const ProfileNav = (props) => {
 
 
                                 <div>
-                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50'>
+                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50 hover:dark:bg-gray-700'>
                                         <div className='flex gap-5 items-center'>
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:w-6 lg:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -95,7 +95,7 @@ export const ProfileNav = (props) => {
                                 </div>
 
                                 <div onClick={logout}>
-                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50'>
+                                    <div className='px-6 py-3 cursor-pointer hover:bg-purple-50 hover:dark:bg-gray-700'>
                                         <div className='flex gap-5 items-center'>
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 lg:w-6 lg:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

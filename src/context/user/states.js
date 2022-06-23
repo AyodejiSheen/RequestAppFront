@@ -100,6 +100,11 @@ const UserState = (props) => {
 
         }).catch((err) => {
             console.log(err);
+            let res = {
+                altType: "danger",
+                altMsg: err.message
+            }
+            setAlert(res)
         });
     }
 

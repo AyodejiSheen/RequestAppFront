@@ -170,7 +170,7 @@ export const Signup = () => {
                                                     </div>
                                                 </div>
 
-                                                <div className='lg:py-1.5'>
+                                                <div className='my-4 md:mt-0 lg:py-1.5'>
                                                     <label className="block text-sm">
                                                         <span className="text-gray-700 dark:text-gray-400">Email Address</span>
                                                         <Field
