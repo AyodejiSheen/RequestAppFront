@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import UserContext from './context/user/context';
 import reportWebVitals from './reportWebVitals';
+import UserState from './context/user/states';
+import UIState from './context/UI/state';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -12,7 +15,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <App />
+      <UIState>
+        <UserState>
+          <App />
+        </UserState>
+      </UIState>
     </React.StrictMode>
   </BrowserRouter>
 );

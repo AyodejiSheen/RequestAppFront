@@ -3,7 +3,9 @@ import {
 
     LOGIN,
     SIGN_UP,
-    SIGN_OUT
+    SIGN_OUT,
+    AUTH,
+    AUTH_ERROR
 
 } from './actions'
 
@@ -26,19 +28,35 @@ const UserReducers = (state, action) => {
             return {
                 ...state,
                 token: res.token,
-                authState:true,
+                authState: true,
                 userId: res.user.id,
                 user: res.user,
             }
 
         case SIGN_OUT:
-            return{
+            return {
                 ...state,
-                user:null,
-                userId:null,
-                token:null,
-                authState:false
+                user: null,
+                userId: null,
+                token: null,
+                authState: false
             }
+
+        case AUTH:
+            let authRes = action.payload;
+            return {
+                ...state,
+                authState: true,
+                user: authRes,
+                userId: authRes.id,
+            }
+
+        case AUTH_ERROR:
+            return {
+                ...state,
+                authState: false
+            }
+
 
 
 

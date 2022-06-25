@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import UIContext from "../../context/UI/context";
 import UserContext from "../../context/user/context";
 import { Alert } from "../alert"
@@ -10,13 +10,9 @@ import { Alert } from "../alert"
 
 export const Dashboard = () => {
 
-    let {resources, user, userId} = useContext(UserContext)
+    let {authState, user} = useContext(UserContext)
 
 
-
-  useEffect(() => {
-    console.log(user)
-  },[])
 
 
     return (

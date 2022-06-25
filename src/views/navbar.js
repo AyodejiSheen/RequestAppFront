@@ -1,17 +1,19 @@
-import React, { useContext, useState } from "react";
-import { NavLink, Outlet, Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
 import Logo from '../media/loder.png'
 import { Alert } from "./alert";
 import { Theme } from "../components/theme";
 import UIContext from "../context/UI/context";
 import { MessageNav } from "../components/messageNav";
 import { ProfileNav } from "../components/profileNav";
+import UserContext from "../context/user/context";
 
 
 
 export const Navbar = () => {
 
     let { isDark } = useContext(UIContext);
+    let { authState } = useContext(UserContext);
 
     const  [mobileNav, setMobileNav] = useState(false);
     const  [showMsg, setShowMsg] = useState(false);
@@ -28,6 +30,17 @@ export const Navbar = () => {
     const toggleProfile = () => {
         setShowProfile(!showProfile)
     }
+
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+  
+      if(!authState){
+        navigate('/')
+      }
+  
+    },[])
 
 
     return (

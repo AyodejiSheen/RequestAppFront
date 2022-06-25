@@ -15,7 +15,8 @@ import {
     LOGIN,
     SIGN_OUT,
     SIGN_UP,
-    SIGN_UP_ERROR
+    AUTH_ERROR,
+    AUTH
 
 } from './actions'
 
@@ -48,7 +49,7 @@ const UserState = (props) => {
     //to register user
     //payload is what is sent to the function when its been called
     const signup = async (data) => {
-        axios.post(`${baseUrl.baseUrl}/user`, data).then((response) => {
+        await axios.post(`${baseUrl.baseUrl}/user`, data).then((response) => {
             if (response.data.error) {
                 let res = {
                     altType: "danger",
@@ -75,7 +76,7 @@ const UserState = (props) => {
 
     //to Login
     const login = async (data) => {
-        axios.post(`${baseUrl.baseUrl}/user/login`, data).then((response) => {
+       await axios.post(`${baseUrl.baseUrl}/user/login`, data).then((response) => {
             if (response.data.error) {
                 let res = {
                     altType: "danger",
@@ -83,7 +84,7 @@ const UserState = (props) => {
                 }
                 setAlert(res)
             } else {
-                localStorage.setItem("JWT", response.data.token);
+                localStorage.setItem("JWTR", response.data.token);
                 dispatch({
                     type: LOGIN,
                     payload: response.data
@@ -112,8 +113,8 @@ const UserState = (props) => {
 
 
     //to logout user
-    const logout = () => {
-        localStorage.removeItem("JWT")
+    const logout = async () => {
+        localStorage.removeItem("JWTR")
         dispatch({
             type: SIGN_OUT
         });
@@ -128,10 +129,26 @@ const UserState = (props) => {
 
 
 
-
-    //fetch request, user & dashboard data 
-    const resources = () => {
+    const handleAuth = async ()  => {
+        let token = localStorage.getItem('JWTR')
+        await axios.get(`${baseUrl.baseUrl}/user/auth`, {
+          headers: {
+            accessToken: token,
+          },
+        }).then((response) => {  
+          if (response.data.error) {
+              dispatch({
+                type: AUTH_ERROR
+              })
+          } else {
+            dispatch({
+                type: AUTH,
+                payload: response.data
+            })
+          }
+        })
     }
+
 
 
 
@@ -143,10 +160,11 @@ const UserState = (props) => {
             signup,
             login,
             logout,
-            resources,
+            handleAuth,
             user: state.user,
             isDark: state.isDark,
-            userId: state.userId
+            userId: state.userId,
+            authState:state.authState
         }}>
             {/* to make the fuctions and state availabe everywhere */}
             {props.children}

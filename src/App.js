@@ -1,7 +1,6 @@
 import './App.css';
-import UserState from './context/user/states';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navbar } from './views/navbar';
 import { Dashboard } from './views/Dashboard/dashboard';
 import UIState from './context/UI/state';
@@ -20,37 +19,43 @@ import { Profile } from './views/Dashboard/Profile/profile';
 
 
 
+
 function App() {
+
+  let { authState, handleAuth } = useContext(UserContext)
+
+  useEffect(() => {
+    handleAuth();
+  }, []);
+
 
 
   return (
     <React.Fragment>
-      <UIState>
-        <UserState>
-            <Alert/>
-            <Routes>
 
-              <Route path='/' element={<Login  />}></Route>
+      <Alert />
+      <Routes>
+
+        <Route path='/' element={<Login />}></Route>
 
 
-              <Route path='sign-up' element={<Signup />}></Route>
+        <Route path='sign-up' element={<Signup />}></Route>
 
-              <Route path='change-password' element={<ChangePassword />}></Route>
+        <Route path='change-password' element={<ChangePassword />}></Route>
 
-              <Route path='reset-password/:id/:token' element={<ResetPassword />}></Route>
+        <Route path='reset-password/:id/:token' element={<ResetPassword />}></Route>
 
-              <Route path='forgot-password' element={<ForgotPassword/>}></Route>
+        <Route path='forgot-password' element={<ForgotPassword />}></Route>
 
-              <Route path='dashboard' element={<Navbar />}>
-                <Route index element={<Dashboard />}></Route>
-                <Route path='profile' element={<Profile/>}></Route>
-              </Route>
+        <Route path='dashboard' element={<Navbar />} >
+          <Route index element={<Dashboard />}></Route>
+          <Route path='profile' element={<Profile />}></Route>
+        </Route>
 
-              <Route path='*' element={<Errorpage />}></Route>
+        <Route path='*' element={<Errorpage />}></Route>
 
-            </Routes>
-        </UserState>
-      </UIState>
+      </Routes>
+
     </React.Fragment>
   );
 }
