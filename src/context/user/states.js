@@ -6,6 +6,9 @@ import axios from "axios";
 import UIContext from '../UI/context';
 import { useNavigate } from 'react-router-dom';
 
+//to check if JWT expired
+import { isJwtExpired } from 'jwt-check-expiration'
+
 
 
 
@@ -16,7 +19,8 @@ import {
     SIGN_OUT,
     SIGN_UP,
     AUTH_ERROR,
-    AUTH
+    AUTH,
+    EDIT_USER
 
 } from './actions'
 
@@ -41,9 +45,6 @@ const UserState = (props) => {
     let { setAlert } = useContext(UIContext)
 
     const navigate = useNavigate();
-
-
-
 
 
     //to register user
@@ -76,7 +77,7 @@ const UserState = (props) => {
 
     //to Login
     const login = async (data) => {
-       await axios.post(`${baseUrl.baseUrl}/user/login`, data).then((response) => {
+        await axios.post(`${baseUrl.baseUrl}/user/login`, data).then((response) => {
             if (response.data.error) {
                 let res = {
                     altType: "danger",
@@ -128,29 +129,75 @@ const UserState = (props) => {
 
 
 
-
-    const handleAuth = async ()  => {
+    // to handle authentication
+    const handleAuth = async () => {
         let token = localStorage.getItem('JWTR')
-        await axios.get(`${baseUrl.baseUrl}/user/auth`, {
-          headers: {
-            accessToken: token,
-          },
-        }).then((response) => {  
-          if (response.data.error) {
-              dispatch({
-                type: AUTH_ERROR
-              })
-          } else {
-            dispatch({
-                type: AUTH,
-                payload: response.data
-            })
-          }
-        })
+        if (token) {
+            let check = isJwtExpired(token);
+            if (!check) {
+                await axios.get(`${baseUrl.baseUrl}/user/auth`, {
+                    headers: {
+                        accessToken: token,
+                    },
+                }).then((response) => {
+                    if (response.data.error) {
+                        dispatch({
+                            type: AUTH_ERROR
+                        })
+                        let res = {
+                            altType: "danger",
+                            altMsg: response.data.error
+                        }
+                        setAlert(res)
+                        navigate('/')
+                    } else {
+                        dispatch({
+                            type: AUTH,
+                            payload: response.data
+                        })
+                    }
+                })
+            } else {
+                navigate('/')
+                let res = {
+                    altType: "danger",
+                    altMsg: "Session Expired"
+                }
+                setAlert(res)
+            }
+        } else {
+            navigate('/')
+        }
     }
 
 
+    //to edit profile
+    const EditUserProfile = async (data) => {
+        let token = localStorage.getItem('JWTR');
+        await axios.put(`${baseUrl.baseUrl}/user/edit`, data, {
+            headers: { accessToken: token, }
+        }).then((response) => {
+            if(response.data.error){
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            }else{
 
+                dispatch({
+                    type:EDIT_USER,
+                    payload:data
+                })
+
+                let res = {
+                    altType: "success",
+                    altMsg: "profile Edited"
+                }
+                setAlert(res)
+            }
+        })
+    }
 
 
 
@@ -161,10 +208,11 @@ const UserState = (props) => {
             login,
             logout,
             handleAuth,
+            EditUserProfile,
             user: state.user,
             isDark: state.isDark,
             userId: state.userId,
-            authState:state.authState
+            authState: state.authState
         }}>
             {/* to make the fuctions and state availabe everywhere */}
             {props.children}

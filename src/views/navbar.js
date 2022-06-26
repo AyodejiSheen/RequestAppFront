@@ -15,11 +15,11 @@ export const Navbar = () => {
     let { isDark } = useContext(UIContext);
     let { authState } = useContext(UserContext);
 
-    const  [mobileNav, setMobileNav] = useState(false);
-    const  [showMsg, setShowMsg] = useState(false);
-    const  [showProfile, setShowProfile] = useState(false);
+    const [mobileNav, setMobileNav] = useState(false);
+    const [showMsg, setShowMsg] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
 
-    const toggleNav  = () => {
+    const toggleNav = () => {
         setMobileNav(!mobileNav)
     }
 
@@ -34,13 +34,6 @@ export const Navbar = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-  
-      if(!authState){
-        navigate('/')
-      }
-  
-    },[])
 
 
     return (
@@ -49,6 +42,7 @@ export const Navbar = () => {
                 <div className="bg-gray-50 dark:bg-gray-900 flex flex-wrap min-h-screen">
                     {/* mobile navbar backgroun overlay */}
                     <div
+                        onClick={toggleNav}
                         className={`fixed inset-0 z-10 flex items-end bg-black bg-opacity-25 sm:items-center sm:justify-center md:hidden ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}
                     ></div>
                     <aside className={`z-20 fixed md:static transform h-screen md:translate-x-0 inset-y-0 left-0 m-top transition duration-300 ease-in-out w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}>
@@ -62,7 +56,7 @@ export const Navbar = () => {
 
                             <div className="mt-6">
                                 <div className="relative">
-                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-100 dark:bg-gray-700 rounded border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-100 dark:bg-gray-700 rounded border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -77,12 +71,12 @@ export const Navbar = () => {
                                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                                             ></path>
                                         </svg>
-                                        <span className="ml-4">Dashboard</span>
+                                        <span className="ml-4 ">Dashboard</span>
                                     </NavLink>
                                 </div>
 
                                 <div className="relative">
-                                    <NavLink to="register" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded  bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="register" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded  bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -97,12 +91,12 @@ export const Navbar = () => {
                                                 d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                                             ></path>
                                         </svg>
-                                        <span className="ml-4">Requests</span>
+                                        <span className="ml-4 ">Requests</span>
                                     </NavLink>
                                 </div>
 
                                 <div className="">
-                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -123,7 +117,7 @@ export const Navbar = () => {
 
 
                                 <div className="">
-                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -201,7 +195,7 @@ export const Navbar = () => {
                                             <img className="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;s=aa3a807e1bbdfd4364d1f449eaa96d82" alt="" aria-hidden="true" />
                                         </button>
 
-                                        <ProfileNav showProfile={showProfile}/>
+                                        <ProfileNav showProfile={showProfile} />
                                     </div>
                                 </div>
 

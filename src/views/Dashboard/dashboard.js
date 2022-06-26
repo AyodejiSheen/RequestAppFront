@@ -12,9 +12,6 @@ export const Dashboard = () => {
 
     let {authState, user} = useContext(UserContext)
 
-
-
-
     return (
 
         <>

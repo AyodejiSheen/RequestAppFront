@@ -47,7 +47,7 @@ function App() {
 
         <Route path='forgot-password' element={<ForgotPassword />}></Route>
 
-        <Route path='dashboard' element={<Navbar />} >
+        <Route path='dashboard/' element={<Navbar />} >
           <Route index element={<Dashboard />}></Route>
           <Route path='profile' element={<Profile />}></Route>
         </Route>

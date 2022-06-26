@@ -5,7 +5,8 @@ import {
     SIGN_UP,
     SIGN_OUT,
     AUTH,
-    AUTH_ERROR
+    AUTH_ERROR,
+    EDIT_USER
 
 } from './actions'
 
@@ -57,6 +58,17 @@ const UserReducers = (state, action) => {
                 authState: false
             }
 
+        case EDIT_USER:
+            return{
+                ...state,
+                user:{...state.user, 
+                    firstname:action.payload.firstname,
+                    lastname:action.payload.lastname,
+                    email:action.payload.email,
+                    phone:action.payload.phone,
+                    about:action.payload.about
+                }
+            }
 
 
 

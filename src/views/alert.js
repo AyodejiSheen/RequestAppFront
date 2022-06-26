@@ -26,7 +26,7 @@ export const Alert = () => {
     return (
         <>
 
-            <div className={isDark ? "dark" : "''"}>    
+            <div className={isDark ? "dark" : "''"}>
                 {
                     alert.showAlert &&
                     <AnimatePresence>  {/*AnimatePresence allows to use the exit attribute*/}
@@ -36,7 +36,7 @@ export const Alert = () => {
                             initial={{ scale: 0 }}
                             transition={{ type: "twin", ease: "easeInOut" }}
                             exit={{ x: -200 }}
-                            className={`fixed z-30 w-72 px-6 py-5 rounded-xl right-10  my-auto top-8  dark:text-gray-100 text-base md:font-medium bg-white shadow-md dark:bg-gray-800 dark:border-2 dark:border-purple-600 ${alert.type === "danger" ? "text-red-600" : alert.type === "success" ? "text-green-700" : "text-yellow-600"}`}>
+                            className={`fixed z-30 w-72 px-6  py-3.5 lg:py-5 rounded-xl right-10  my-auto top-8  dark:text-gray-100 text-base md:font-medium bg-white shadow-md dark:bg-gray-800 dark:border-2 dark:border-purple-600 ${alert.type === "danger" ? "text-red-600" : alert.type === "success" ? "text-green-700" : "text-yellow-600"}`}>
                             <div className='flex'>
                                 <p>
                                     {
@@ -54,7 +54,7 @@ export const Alert = () => {
                                     }
                                 </p>
 
-                                <p className='ml-3'>{alert.msg}</p>
+                                <p className='ml-3 text-sm'>{alert.msg}</p>
                             </div>
                         </motion.div>
                     </AnimatePresence>

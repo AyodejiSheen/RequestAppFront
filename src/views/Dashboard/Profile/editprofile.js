@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import img1 from '../../../media/messages-1.jpg'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from "formik";   //to make use of formik to handle the form creation for the posts
 import * as Yup from 'yup'
 import UserContext from '../../../context/user/context'
 
@@ -13,42 +13,44 @@ export const EditProfile = () => {
 
     const [onChange, setOnchange] = useState(false)
 
-    let { user } = useContext(UserContext);
+    let { user, EditUserProfile } = useContext(UserContext);
 
-useEffect(() => {
-    console.log(user)
-}, [])
 
-    const initialValues = {
+    const intialValues = {
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
         phone: user.phone,
-        about: ""
+        about: user.about
     }
 
     const validationSchema = Yup.object().shape({
         firstname: Yup.string().required("Please input your firstname"),  //i.e it must be a string and its required
         lastname: Yup.string().required("Please input your firstname"), //error message is defined for required
-        gender: Yup.string().required("Please select input your gender"), //error message is defined for required
         phone: Yup.string().min(10).max(12).required("Please input your phone number"),
-        about: Yup.string().min(50).max(200),
+        about: Yup.string().min(10).max(200),
+        email: Yup.string().email('Invalid email').required('Email is required'),
     })
 
 
     const setchange = () => {
-        console.log("changing")
+        setOnchange(true)
+    }
+
+
+    const onSubmit = (data) => {
+        console.log(user)
+        let details = {...data, id:user.id};
+        EditUserProfile(details)
     }
 
 
 
 
-
     return (
-
         <>
 
-            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={() => console.log("welcome")}>
+            <Formik initialValues={intialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 <Form>
                     <div className='md:flex md:space-x-10 lg:space-x-20 xl:space-x-24 items-center mb-6'>
                         <div className='w-32 space-y-3'>
@@ -68,16 +70,24 @@ useEffect(() => {
                             <div>
                                 <label className="block text-sm">
                                     <span className="text-gray-700 dark:text-gray-400">Firstname</span>
-                                    <Field name="firstname" className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" />
-                                    <ErrorMessage name="lastname" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                    <Field
+                                        name="firstname"
+                                        onFocus={setchange}
+                                        className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        type="text" />
+                                    <ErrorMessage name="firstname" component="span" className="text-red-500" />
                                 </label>
                             </div>
 
                             <div>
                                 <label className="block text-sm">
                                     <span className="text-gray-700 dark:text-gray-400">Lastname</span>
-                                    <Field name="lastname" className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="lastname" />
-                                    <ErrorMessage name="lastname" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                    <Field name="lastname"
+                                        onFocus={setchange}
+
+                                        className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                        type="text" />
+                                    <ErrorMessage name="lastname" component="span" className="text-red-500" />
                                 </label>
                             </div>
                         </div>
@@ -87,33 +97,47 @@ useEffect(() => {
                         <div>
                             <label className="block text-sm">
                                 <span className="text-gray-700 dark:text-gray-400">Email Address</span>
-                                <Field name="email" className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="email" />
-                                <ErrorMessage name="email" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                <Field
+                                    name="email"
+                                    onFocus={setchange}
+                                    className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    type="email" />
+                                <ErrorMessage name="email" component="span" className="text-red-500" />
                             </label>
                         </div>
 
                         <div>
                             <label className="block text-sm">
                                 <span className="text-gray-700 dark:text-gray-400">Phone Number</span>
-                                <Field name="phone" className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="number" />
-                                <ErrorMessage name="phone" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                <Field
+                                    name="phone"
+                                    onFocus={setchange}
+                                    className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    type="number" />
+                                <ErrorMessage name="phone" component="span" className="text-red-500" />
                             </label>
                         </div>
 
                         <div>
                             <label className="block text-sm">
                                 <span className="text-gray-700 dark:text-gray-400">About</span>
-                                <Field as="textarea" rows="4" name="about" className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text" />
-                                <ErrorMessage name="about" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
+                                <Field
+                                    onFocus={setchange}
+                                    as="textarea"
+                                    rows="4"
+                                    name="about"
+                                    className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    type="text" />
+                                <ErrorMessage name="about" component="span" className="text-red-500" />
                             </label>
                         </div>
                     </div>
 
-                    <button className={`bg-purple-300 text-sm mt-5 text-white px-5 py-3 rounded-lg shadow-md shadow-purple-300 dark:shadow-gray-900 ${onChange ? "bg-purple-700" : "bg-purple-300"}`} type='submit'>Save Changes</button>
+                    <button type='submit' className={` text-sm mt-5 text-white px-5 py-3 rounded-lg shadow-md shadow-purple-300 dark:shadow-gray-900 ${onChange ? "bg-purple-700" : "bg-purple-300"}`} >Save Changes</button>
+
 
                 </Form>
             </Formik>
-
 
         </>
     )

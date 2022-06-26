@@ -32,7 +32,8 @@ export const Signup = () => {
         email: "",
         phone: "",
         password: "",
-        cpassword: ""
+        cpassword: "",
+        about:"Hi, Am here on Reqco!"
     }
 
 
@@ -44,7 +45,8 @@ export const Signup = () => {
         email: Yup.string().email('Invalid email').required('Email is required'),
         phone: Yup.string().min(10).max(12).required("Please input your phone number"),
         password: Yup.string().min(4).max(20).required("Enter password"),
-        cpassword: Yup.string().min(4).max(20).required("Enter password")
+        cpassword: Yup.string().min(4).max(20).required("Enter password"),
+        about: Yup.string().min(10).max(200),
     })
 
 
