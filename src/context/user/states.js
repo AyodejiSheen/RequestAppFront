@@ -81,7 +81,7 @@ const UserState = (props) => {
             if (response.data.error) {
                 let res = {
                     altType: "danger",
-                    altMsg: "response.data.error"
+                    altMsg: response.data.error
                 }
                 setAlert(res)
             } else {
