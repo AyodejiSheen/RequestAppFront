@@ -24,9 +24,6 @@ function App() {
 
   let { authState, handleAuth } = useContext(UserContext)
 
-  useEffect(() => {
-    handleAuth();
-  }, []);
 
 
 

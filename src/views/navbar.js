@@ -13,7 +13,7 @@ import UserContext from "../context/user/context";
 export const Navbar = () => {
 
     let { isDark } = useContext(UIContext);
-    let { authState } = useContext(UserContext);
+    let { handleAuth } = useContext(UserContext);
 
     const [mobileNav, setMobileNav] = useState(false);
     const [showMsg, setShowMsg] = useState(false);
@@ -33,6 +33,11 @@ export const Navbar = () => {
 
 
     const navigate = useNavigate()
+
+    
+  useEffect(() => {
+    handleAuth();
+  }, []);
 
 
 

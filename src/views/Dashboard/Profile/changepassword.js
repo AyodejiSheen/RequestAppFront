@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
+import UserContext from '../../../context/user/context';
 
 
 
@@ -10,13 +11,13 @@ import * as Yup from 'yup';
 export const ChangePassword = () => {
 
 
+    let {ChangePassword} = useContext(UserContext)
+
+
 
     const changeSchema = Yup.object().shape({
-        email: Yup.string()
-            .email('Invalid email')
-            .required('Email is required'),
-        password: Yup.string()
-            .required('Password is required')
+        oldPassword: Yup.string().required('Old Password is required'),
+        NewPassword: Yup.string().required('New Password is required')
     });
 
 
@@ -33,7 +34,7 @@ export const ChangePassword = () => {
                                 <Formik
                                     validationSchema={changeSchema}
                                     initialValues={{ oldPassword: '', NewPassword: '' }}
-                                    onSubmit={() => console.log("welcome")}
+                                    onSubmit={(data) => ChangePassword(data)}
                                 >
                                     <Form>
                                         <label className="block text-sm">

@@ -171,25 +171,24 @@ const UserState = (props) => {
     }
 
 
+
     //to edit profile
     const EditUserProfile = async (data) => {
         let token = localStorage.getItem('JWTR');
         await axios.put(`${baseUrl.baseUrl}/user/edit`, data, {
             headers: { accessToken: token, }
         }).then((response) => {
-            if(response.data.error){
+            if (response.data.error) {
                 let res = {
                     altType: "danger",
                     altMsg: response.data.error
                 }
                 setAlert(res)
-            }else{
-
+            } else {
                 dispatch({
-                    type:EDIT_USER,
-                    payload:data
+                    type: EDIT_USER,
+                    payload: data
                 })
-
                 let res = {
                     altType: "success",
                     altMsg: "profile Edited"
@@ -200,6 +199,92 @@ const UserState = (props) => {
     }
 
 
+    //to change password
+    const ChangePassword = async (data) => {
+        let token = localStorage.getItem('JWTR');
+        await axios.put(`${baseUrl.baseUrl}/user/changepassword`, data, {
+            headers: { accessToken: token, }
+        }).then((response) => {
+            if (response.data.error) {
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            } else {
+                let res = {
+                    altType: "success",
+                    altMsg: "Password Changed"
+                }
+                setAlert(res)
+            }
+        })
+    }
+
+
+
+    // to reset password
+    const resetLink = async (data) => {
+        await axios.post(`${baseUrl.baseUrl}/user/resetlink`, { data }
+        ).then((response) => {
+            if (response.data.error) {
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            } else {
+                let res = {
+                    altType: "success",
+                    altMsg: response.data
+                }
+                setAlert(res)
+            }
+
+        })
+    }
+
+
+    //to reset Password
+    const verifyLink = async (data) => {
+        let id = data.id;
+        let token = data.token
+        let check = isJwtExpired(token);
+        if (!check) {
+            axios.get(`${baseUrl.baseUrl}/user/verify-resetlink/${id}/${token}`)
+                .then((response) => {
+                    if (response.data.error) {
+                        navigate('/')
+                        let res = {
+                            altType: "danger",
+                            altMsg: response.data.error
+                        }
+                        setAlert(res)
+                    } else {
+                        let res = {
+                            altType: "success",
+                            altMsg: "Reset Your Password Now"
+                        }
+                        setAlert(res)
+                    }
+                })
+        } else {
+            navigate('/')
+            let res = {
+                altType: "danger",
+                altMsg: "Link has Expired"
+            }
+            setAlert(res)
+        }
+    }
+
+
+
+    //to finally reset Password
+    const resetPassword = async () => {
+
+    }
+
 
 
     return (
@@ -209,6 +294,9 @@ const UserState = (props) => {
             logout,
             handleAuth,
             EditUserProfile,
+            ChangePassword,
+            resetLink,
+            verifyLink,
             user: state.user,
             isDark: state.isDark,
             userId: state.userId,

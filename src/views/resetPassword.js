@@ -1,15 +1,28 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Theme } from '../components/theme'
 import UIContext from '../context/UI/context'
 import Logo from '../media/loder.png'
 import img from '../media/forgot-password-office.jpeg'
 import imgDark from '../media/forgot-password-office-dark.jpeg'
+import { useParams } from 'react-router-dom'
+import UserContext from '../context/user/context'
 
 
 
 export const ResetPassword = () => {
 
     let { isDark } = useContext(UIContext)
+    let {verifyLink} = useContext(UserContext)
+
+    let {id, token} = useParams();
+
+    useEffect(() => {
+        let data = {
+            id:id,
+            token:token
+        }
+        verifyLink(data)
+    }, [])
 
 
     return (

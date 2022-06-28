@@ -47,7 +47,7 @@ export const Settings = () => {
 
                     <div className='flex items-center'>
                         <div>
-                            <input type="checkbox" ddefaultChecked className='w-6 h-5 rounded-full mr-3'></input>
+                            <input type="checkbox" defaultChecked className='w-6 h-5 rounded-full mr-3'></input>
                         </div>
                         <div>
                             <label>Security alerts</label>
