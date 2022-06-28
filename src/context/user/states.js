@@ -143,12 +143,14 @@ const UserState = (props) => {
                         dispatch({
                             type: AUTH_ERROR
                         })
-                        let res = {
-                            altType: "danger",
-                            altMsg: response.data.error
-                        }
-                        setAlert(res)
-                        navigate('/')
+                        setTimeout(() => {
+                            let res = {
+                                altType: "danger",
+                                altMsg: response.data.error
+                            }
+                            setAlert(res)
+                            navigate('/')
+                        },500)
                     } else {
                         dispatch({
                             type: AUTH,
@@ -164,15 +166,24 @@ const UserState = (props) => {
                     setAlert(res)
                 })
             } else {
+                setTimeout(() => {
+                    let res = {
+                        altType: "danger",
+                        altMsg: "Session Expired"
+                    }
+                    setAlert(res)
+                    navigate('/')
+                }, 500)
+            }
+        } else {
+            setTimeout(() => {
                 let res = {
                     altType: "danger",
-                    altMsg: "Session Expired"
+                    altMsg: "User not logged In"
                 }
                 setAlert(res)
                 navigate('/')
-            }
-        } else {
-            navigate('/')
+            }, 500)
         }
     }
 
@@ -304,12 +315,14 @@ const UserState = (props) => {
                 })
         } else {
 
-            let res = {
-                altType: "danger",
-                altMsg: "Link has Expired"
-            }
-            setAlert(res)
-            navigate('/')
+            setTimeout(() => {
+                let res = {
+                    altType: "danger",
+                    altMsg: "Link has Expired"
+                }
+                setAlert(res)
+                navigate('/')
+            }, 500)
 
         }
     }
@@ -322,19 +335,23 @@ const UserState = (props) => {
         let id = data.id;
         await axios.put(`${baseUrl.baseUrl}/user/reset-password`, { newPassword, id }).then((response) => {
             if (response.data.error) {
-                let res = {
-                    altType: "danger",
-                    altMsg: response.data.error
-                }
-                setAlert(res)
-                navigate('/')
+                setTimeout(() => {
+                    let res = {
+                        altType: "danger",
+                        altMsg: response.data.error
+                    }
+                    setAlert(res)
+                    navigate('/')
+                }, 500)
             } else {
-                let res = {
-                    altType: "success",
-                    altMsg: "Password Resetted"
-                }
-                setAlert(res)
-                navigate('/')
+                setTimeout(() => {
+                    let res = {
+                        altType: "success",
+                        altMsg: "Password Resetted"
+                    }
+                    setAlert(res)
+                    navigate('/')
+                }, 500)
             }
         }).catch((err) => {
             console.log(err);

@@ -35,8 +35,8 @@ export const Navbar = () => {
     const navigate = useNavigate()
 
     
-  useEffect(() => {
-    handleAuth();
+  useEffect( () => {
+     handleAuth();
   }, []);
 
 
