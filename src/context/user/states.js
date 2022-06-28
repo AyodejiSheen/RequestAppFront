@@ -99,7 +99,6 @@ const UserState = (props) => {
                     navigate('/dashboard')
                 }, 1000)
             }
-
         }).catch((err) => {
             console.log(err);
             let res = {
@@ -165,12 +164,12 @@ const UserState = (props) => {
                     setAlert(res)
                 })
             } else {
-                navigate('/')
                 let res = {
                     altType: "danger",
                     altMsg: "Session Expired"
                 }
                 setAlert(res)
+                navigate('/')
             }
         } else {
             navigate('/')
@@ -282,12 +281,12 @@ const UserState = (props) => {
             axios.get(`${baseUrl.baseUrl}/user/verify-resetlink/${id}/${token}`)
                 .then((response) => {
                     if (response.data.error) {
-                        navigate('/')
                         let res = {
                             altType: "danger",
                             altMsg: response.data.error
                         }
                         setAlert(res)
+                        navigate('/')
                     } else {
                         let res = {
                             altType: "success",
@@ -304,14 +303,14 @@ const UserState = (props) => {
                     setAlert(res)
                 })
         } else {
-            setTimeout(() => {
-                let res = {
-                    altType: "danger",
-                    altMsg: "Link has Expired"
-                }
-                setAlert(res)
-                navigate('/')
-            },1000)
+
+            let res = {
+                altType: "danger",
+                altMsg: "Link has Expired"
+            }
+            setAlert(res)
+            navigate('/')
+
         }
     }
 
@@ -322,14 +321,14 @@ const UserState = (props) => {
         let newPassword = data.newPassword;
         let id = data.id;
         await axios.put(`${baseUrl.baseUrl}/user/reset-password`, { newPassword, id }).then((response) => {
-            if(response.data.error){
-                navigate('/')
+            if (response.data.error) {
                 let res = {
                     altType: "danger",
                     altMsg: response.data.error
                 }
                 setAlert(res)
-            }else{
+                navigate('/')
+            } else {
                 let res = {
                     altType: "success",
                     altMsg: "Password Resetted"
