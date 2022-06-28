@@ -65,7 +65,7 @@ const UserState = (props) => {
                     }
                     setAlert(res)
                     navigate('/')
-                }, 2000)
+                }, 1000)
             }
         }).catch((err) => {
             console.log(err);
@@ -156,6 +156,13 @@ const UserState = (props) => {
                             payload: response.data
                         })
                     }
+                }).catch((err) => {
+                    console.log(err);
+                    let res = {
+                        altType: "danger",
+                        altMsg: "Server Error"
+                    }
+                    setAlert(res)
                 })
             } else {
                 navigate('/')
@@ -195,6 +202,13 @@ const UserState = (props) => {
                 }
                 setAlert(res)
             }
+        }).catch((err) => {
+            console.log(err);
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
         })
     }
 
@@ -218,6 +232,13 @@ const UserState = (props) => {
                 }
                 setAlert(res)
             }
+        }).catch((err) => {
+            console.log(err);
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
         })
     }
 
@@ -241,6 +262,13 @@ const UserState = (props) => {
                 setAlert(res)
             }
 
+        }).catch((err) => {
+            console.log(err);
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
         })
     }
 
@@ -267,15 +295,23 @@ const UserState = (props) => {
                         }
                         setAlert(res)
                     }
+                }).catch((err) => {
+                    console.log(err);
+                    let res = {
+                        altType: "danger",
+                        altMsg: "Server Error"
+                    }
+                    setAlert(res)
                 })
         } else {
-            navigate('/')
-
-            let res = {
-                altType: "danger",
-                altMsg: "Link has Expired"
-            }
-            setAlert(res)
+            setTimeout(() => {
+                let res = {
+                    altType: "danger",
+                    altMsg: "Link has Expired"
+                }
+                setAlert(res)
+                navigate('/')
+            },1000)
         }
     }
 
@@ -301,6 +337,13 @@ const UserState = (props) => {
                 setAlert(res)
                 navigate('/')
             }
+        }).catch((err) => {
+            console.log(err);
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
         })
     }
 
