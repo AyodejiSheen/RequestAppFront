@@ -52,7 +52,6 @@ export const Signup = () => {
 
 
     const onSubmit = async (data, {resetForm}) => {
-        console.log(data)
         let details = data;
         if (details.cpassword !== details.password) {
             let res = {

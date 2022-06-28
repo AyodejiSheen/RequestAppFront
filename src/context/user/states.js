@@ -270,6 +270,7 @@ const UserState = (props) => {
                 })
         } else {
             navigate('/')
+
             let res = {
                 altType: "danger",
                 altMsg: "Link has Expired"
@@ -281,8 +282,26 @@ const UserState = (props) => {
 
 
     //to finally reset Password
-    const resetPassword = async () => {
-
+    const resetPassword = async (data) => {
+        let newPassword = data.newPassword;
+        let id = data.id;
+        await axios.put(`${baseUrl.baseUrl}/user/reset-password`, { newPassword, id }).then((response) => {
+            if(response.data.error){
+                navigate('/')
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            }else{
+                let res = {
+                    altType: "success",
+                    altMsg: "Password Resetted"
+                }
+                setAlert(res)
+                navigate('/')
+            }
+        })
     }
 
 
@@ -297,6 +316,7 @@ const UserState = (props) => {
             ChangePassword,
             resetLink,
             verifyLink,
+            resetPassword,
             user: state.user,
             isDark: state.isDark,
             userId: state.userId,
