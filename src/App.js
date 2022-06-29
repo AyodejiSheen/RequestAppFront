@@ -14,6 +14,8 @@ import { ForgotPassword } from './views/forgotPassword';
 import { Alert } from './views/alert';
 import { Errorpage } from './views/404';
 import { Profile } from './views/Dashboard/Profile/profile';
+import { Requests } from './views/Dashboard/Requests/requests';
+import { MakeRequests } from './views/Dashboard/Requests/makeRequest';
 
 
 
@@ -44,9 +46,12 @@ function App() {
 
         <Route path='forgot-password' element={<ForgotPassword />}></Route>
 
-        <Route path='dashboard/' element={<Navbar />} >
+        <Route path='dashboard' element={<Navbar />} >
           <Route index element={<Dashboard />}></Route>
           <Route path='profile' element={<Profile />}></Route>
+
+          <Route path='requests' element={<Requests/>}></Route>
+          <Route path='create-a-requests' element={<MakeRequests/>}></Route>
         </Route>
 
         <Route path='*' element={<Errorpage />}></Route>

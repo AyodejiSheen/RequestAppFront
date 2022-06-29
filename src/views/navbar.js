@@ -50,7 +50,7 @@ export const Navbar = () => {
                         onClick={toggleNav}
                         className={`fixed inset-0 z-10 flex items-end bg-black bg-opacity-25 sm:items-center sm:justify-center md:hidden ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}
                     ></div>
-                    <aside className={`z-20 fixed md:static transform h-screen md:translate-x-0 inset-y-0 left-0 m-top transition duration-300 ease-in-out w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}>
+                    <aside className={`z-20 fixed transform h-screen md:translate-x-0 inset-y-0 left-0 m-top transition duration-300 ease-in-out w-64 md:-mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}>
                         <div className="py-4 text-gray-500 dark:text-gray-400">
                             <div className="mt-3">
                                 <Link to="/" className=" flex items-center space-x-3 ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">
@@ -61,7 +61,7 @@ export const Navbar = () => {
 
                             <div className="mt-6">
                                 <div className="relative">
-                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-100 dark:bg-gray-700 rounded border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-200 dark:bg-gray-700 rounded border-purple-600 text-purple-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -81,7 +81,7 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="relative">
-                                    <NavLink to="register" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded  bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="requests" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded  bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -142,12 +142,14 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="px-6 my-6">
+                                    <NavLink to="create-a-requests">
                                     <button
                                         onClick={toggleNav} className="flex w-full items-center text-base justify-between px-4 py-2 md:font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
                                         Make Requests
                                         <span className="ml-2 text-base" aria-hidden="true">+</span>
                                     </button>
+                                    </NavLink>
                                 </div>
 
 
@@ -157,7 +159,7 @@ export const Navbar = () => {
 
 
                     <div className="flex flex-col md:flex-1 w-full">
-                        <header className="z-10 py-4 bg-white shadow-md dark:bg-gray-800 fixed md:static">
+                        <header className="z-10 py-4 bg-white shadow-md dark:bg-gray-800 fixed w-full">
                             <div className="container flex items-center justify-between h-full px-6 lg:px-32 mx-auto text-purple-600">
                                 {/* mobile hambuger */}
 
@@ -168,7 +170,7 @@ export const Navbar = () => {
                                 </button>
 
                                 {/* search bar */}
-                                <div className="flex justify-center flex-1 lg:mr-32">
+                                <div className="flex justify-center flex-1 lg:mr-32 md:ml-64">
                                     <div className="relative w-full max-w-xl mr-6 focus-within:text-purple-500">
                                         <div className="absolute inset-y-0 flex items-center pl-2">
                                             <svg className="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -209,7 +211,7 @@ export const Navbar = () => {
                         </header>
 
                         {/* main display */}
-                        <main className="relative overflow-y-auto px-6 lg:px-32">
+                        <main className="relative overflow-y-auto px-6 lg:px-32 md:ml-64 md:mt-20">
                             <div className="mt-24 md:mt-10">
                                 <Outlet />
                             </div>

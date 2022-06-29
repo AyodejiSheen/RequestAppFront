@@ -43,7 +43,7 @@ export const Signup = () => {
         lastname: Yup.string().required("Please input your firstname"), //error message is defined for required
         gender: Yup.string().required("Please select input your gender"), //error message is defined for required
         email: Yup.string().email('Invalid email').required('Email is required'),
-        phone: Yup.string().min(10).max(12).required("Please input your phone number"),
+        phone: Yup.number().min(10).max(12).required("Please input your phone number"),
         password: Yup.string().min(4).max(20).required("Enter password"),
         cpassword: Yup.string().min(4).max(20).required("Enter password"),
         about: Yup.string().min(10).max(200),

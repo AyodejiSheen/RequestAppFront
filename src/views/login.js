@@ -70,7 +70,7 @@ export const Login = () => {
                                             </label>
 
                                             {/* <!-- You should use a button here, as the anchor is only used for the example  --> */}
-                                            <button to="/dashboard"
+                                            <button 
                                                 className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
                                             >
                                                 Log in
