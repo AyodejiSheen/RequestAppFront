@@ -39,7 +39,6 @@ export const EditProfile = () => {
 
 
     const onSubmit = (data) => {
-        console.log(user)
         let details = {...data, id:user.id};
         EditUserProfile(details)
     }

@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import UserContext from './context/user/context';
 import reportWebVitals from './reportWebVitals';
 import UserState from './context/user/states';
 import UIState from './context/UI/state';
+import RequestState from './context/requests/states';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +17,9 @@ root.render(
     <React.StrictMode>
       <UIState>
         <UserState>
-          <App />
+          <RequestState>
+            <App />
+          </RequestState>
         </UserState>
       </UIState>
     </React.StrictMode>
