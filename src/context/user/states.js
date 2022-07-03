@@ -68,7 +68,11 @@ const UserState = (props) => {
                 }, 1000)
             }
         }).catch((err) => {
-            console.log(err);
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
         });
     }
 
@@ -100,7 +104,6 @@ const UserState = (props) => {
                 }, 1000)
             }
         }).catch((err) => {
-            console.log(err);
             let res = {
                 altType: "danger",
                 altMsg: "Server Error"
@@ -158,7 +161,6 @@ const UserState = (props) => {
                         })
                     }
                 }).catch((err) => {
-                    console.log(err);
                     let res = {
                         altType: "danger",
                         altMsg: "Server Error"
@@ -202,10 +204,12 @@ const UserState = (props) => {
                 }
                 setAlert(res)
             } else {
+                console.log(response.data)
                 dispatch({
                     type: EDIT_USER,
-                    payload: data
-                })
+                    payload: response.data
+                });
+                localStorage.setItem('JWTR', response.data.token)
                 let res = {
                     altType: "success",
                     altMsg: "profile Edited"
@@ -213,7 +217,6 @@ const UserState = (props) => {
                 setAlert(res)
             }
         }).catch((err) => {
-            console.log(err);
             let res = {
                 altType: "danger",
                 altMsg: "Server Error"
@@ -243,7 +246,6 @@ const UserState = (props) => {
                 setAlert(res)
             }
         }).catch((err) => {
-            console.log(err);
             let res = {
                 altType: "danger",
                 altMsg: "Server Error"
@@ -273,7 +275,6 @@ const UserState = (props) => {
             }
 
         }).catch((err) => {
-            console.log(err);
             let res = {
                 altType: "danger",
                 altMsg: "Server Error"
@@ -314,7 +315,6 @@ const UserState = (props) => {
                     setAlert(res)
                 })
         } else {
-
             setTimeout(() => {
                 let res = {
                     altType: "danger",
@@ -354,7 +354,6 @@ const UserState = (props) => {
                 }, 500)
             }
         }).catch((err) => {
-            console.log(err);
             let res = {
                 altType: "danger",
                 altMsg: "Server Error"

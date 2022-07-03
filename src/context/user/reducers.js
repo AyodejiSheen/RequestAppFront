@@ -59,15 +59,11 @@ const UserReducers = (state, action) => {
             }
 
         case EDIT_USER:
+            let resp = action.payload;
             return{
                 ...state,
-                user:{...state.user, 
-                    firstname:action.payload.firstname,
-                    lastname:action.payload.lastname,
-                    email:action.payload.email,
-                    phone:action.payload.phone,
-                    about:action.payload.about
-                }
+                token: resp.token,
+                user: resp.user,
             }
 
 

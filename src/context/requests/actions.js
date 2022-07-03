@@ -1,1 +1,2 @@
-export const MAKE_REQUEST = "MAKE_REQUEST"
+export const MAKE_REQUEST = "MAKE_REQUEST";
+export const GET_REQUESTS = "GET_REQUESTS"

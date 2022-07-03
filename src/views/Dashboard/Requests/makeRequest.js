@@ -1,13 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, ErrorMessage, Form, Field } from 'formik';
 import img from '../../../media/not-found.svg'
 import { motion, AnimatePresence } from "framer-motion"; //check note.txt for notes on framer motion
+import RequestContext from '../../../context/requests/context';
+import UserContext from '../../../context/user/context';
 
 
 
 
 export const MakeRequests = () => {
+
+
+    let {MakeRequests} = useContext(RequestContext);
+    let {user} = useContext(UserContext);
 
     //creating  intialvalues for formik
     const intialValues = {
@@ -17,6 +23,10 @@ export const MakeRequests = () => {
         quantity: "",
         itemLoc: "",
         requestBody: "",
+        firstname:user.firstname,
+        lastname:user.lastname,
+        email:user.email,
+        status:"Pending"
     }
 
 
@@ -31,10 +41,11 @@ export const MakeRequests = () => {
     })
 
 
-    const CreatRequest = (data) => {
-        console.log(data)
-    }
 
+    const CreatRequest = (data) => {
+        let details = {...data, UserId : user.id};
+        MakeRequests(details);
+    }
 
 
     return (
