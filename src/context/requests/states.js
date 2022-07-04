@@ -9,6 +9,7 @@ import {
     MAKE_REQUEST,
     GET_REQUESTS
 } from './actions'
+import UserContext from "../user/context";
 
 
 
@@ -17,6 +18,8 @@ import {
 const RequestState = (props) => {
 
     let { setAlert } = useContext(UIContext);
+    let {user} = useContext(UserContext);
+
 
 
     const initialState = {
@@ -30,7 +33,12 @@ const RequestState = (props) => {
 
     const MakeRequests = async (data) => {
         let token = localStorage.getItem("JWTR");
-        console.log(data)
+        data = {...data,
+            firstname:user.firstname,
+            lastname:user.lastname,
+            email:user.email,
+            UserId:user.id
+        }
         await axios.post(`${baseUrl.baseUrl}/request`, data, {
             headers: { accessToken: token }
         }).then((response) => {
@@ -73,7 +81,6 @@ const RequestState = (props) => {
                     type: GET_REQUESTS,
                     payload: response.data
                 });
-                console.log(state.isLoading)
             }
         }).catch((err) => {
             let res = {

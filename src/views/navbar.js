@@ -53,7 +53,7 @@ export const Navbar = () => {
                     <aside className={`z-20 fixed transform h-screen md:translate-x-0 inset-y-0 left-0 m-top transition duration-300 ease-in-out w-64 md:-mt-16 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 ${mobileNav ? "translate-x-0" : "-translate-x-full"}`}>
                         <div className="py-4 text-gray-500 dark:text-gray-400">
                             <div className="mt-3">
-                                <Link to="/" className=" flex items-center space-x-3 ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">
+                                <Link to="/dashboard" className=" flex items-center space-x-3 ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">
                                     <img alt="logo" src={Logo} className="w-8 h-6" />
                                     <p className="">Reqco</p>
                                 </Link>
@@ -61,7 +61,7 @@ export const Navbar = () => {
 
                             <div className="mt-6">
                                 <div className="relative">
-                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 bg-gray-200 dark:bg-gray-700 rounded border-purple-600 text-purple-800 px-6 py-3 inline-flex items-center w-full text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="/dashboard" onClick={toggleNav} className={({ isActive }) => (isActive ? "text-sm border-l-4  font-medium bg-gray-200 dark:bg-gray-700 rounded border-purple-600 text-purple-800 px-6 py-3 inline-flex items-center w-full md:text-base  md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex font-medium items-center w-full md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -81,7 +81,7 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="relative">
-                                    <NavLink to="requests" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded  bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="requests" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded font-medium bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex font-medium items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -101,7 +101,7 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="">
-                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded font-medium bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex font-medium items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -122,7 +122,7 @@ export const Navbar = () => {
 
 
                                 <div className="">
-                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex items-center w-full text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm font-medium md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 font-medium inline-flex items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -144,7 +144,7 @@ export const Navbar = () => {
                                 <div className="px-6 my-6">
                                     <NavLink to="create-a-requests">
                                     <button
-                                        onClick={toggleNav} className="flex w-full items-center text-base justify-between px-4 py-2 md:font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                        onClick={toggleNav} className="flex w-full items-center text-sm font-medium md:text-base justify-between px-4 py-2 md:font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >
                                         Make Requests
                                         <span className="ml-2 text-base" aria-hidden="true">+</span>

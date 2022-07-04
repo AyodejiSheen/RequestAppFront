@@ -13,7 +13,6 @@ export const MakeRequests = () => {
 
 
     let {MakeRequests} = useContext(RequestContext);
-    let {user} = useContext(UserContext);
 
     //creating  intialvalues for formik
     const intialValues = {
@@ -23,9 +22,6 @@ export const MakeRequests = () => {
         quantity: "",
         itemLoc: "",
         requestBody: "",
-        firstname:user.firstname,
-        lastname:user.lastname,
-        email:user.email,
         status:"Pending"
     }
 
@@ -42,9 +38,9 @@ export const MakeRequests = () => {
 
 
 
-    const CreatRequest = (data) => {
-        let details = {...data, UserId : user.id};
-        MakeRequests(details);
+    const CreatRequest = (data, {resetForm})=> {
+        MakeRequests(data);
+        resetForm();
     }
 
 
