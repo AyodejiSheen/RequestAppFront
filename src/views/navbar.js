@@ -211,7 +211,13 @@ export const Navbar = () => {
                         </header>
 
                         {/* main display */}
-                        <main className="relative overflow-y-auto px-6 lg:px-32 md:ml-64 md:mt-20">
+                        <main className="relative overflow-y-auto px-6 lg:px-32 md:ml-64 md:mt-20" onClick={() => {
+                            if(showProfile === true){
+                                toggleProfile();
+                            }else if(showMsg === true){
+                                toggleMsg();
+                            }
+                        }}>
                             <div className="mt-24 md:mt-10">
                                 <Outlet />
                             </div>

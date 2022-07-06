@@ -1,6 +1,7 @@
 import {
     MAKE_REQUEST,
-    GET_REQUESTS
+    GET_REQUESTS,
+    VIEW_REQUEST
 } from './actions'
 
 
@@ -24,6 +25,12 @@ const RequestReducer = (state, action) => {
                 isLoading: true
             }
 
+        case VIEW_REQUEST:
+            return{
+                ...state,
+                request:action.payload,
+                isReqLoading:true
+            }
 
 
         default:

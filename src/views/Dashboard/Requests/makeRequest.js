@@ -63,7 +63,7 @@ export const MakeRequests = () => {
                                                 className="block w-full mt-1 border p-2.5 text-sm font-medium dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text"
                                             />
                                             <div className='text-gray-500'>
-                                                <label>Need help  </label><Field name="requestTitle" />
+                                                <label> I Need help  </label><Field name="requestTitle" disabled={true}/>
                                             </div>
                                             <ErrorMessage name="requestTitle" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
                                         </label>

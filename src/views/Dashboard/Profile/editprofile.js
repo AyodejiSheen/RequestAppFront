@@ -9,12 +9,13 @@ import UserContext from '../../../context/user/context'
 
 
 
-export const EditProfile = () => {
+export const EditProfile = (props) => {
 
     const [onChange, setOnchange] = useState(false)
 
-    let { user, EditUserProfile } = useContext(UserContext);
+    let { user } = useContext(UserContext);
 
+    let {onSubmit} = props;
 
     const intialValues = {
         firstname: user.firstname,
@@ -36,13 +37,6 @@ export const EditProfile = () => {
     const setchange = () => {
         setOnchange(true)
     }
-
-
-    const onSubmit = (data) => {
-        let details = {...data, id:user.id};
-        EditUserProfile(details)
-    }
-
 
 
 
@@ -70,6 +64,7 @@ export const EditProfile = () => {
                                 <label className="block text-sm">
                                     <span className="text-gray-700 dark:text-gray-400">Firstname</span>
                                     <Field
+                                        disabled={true}
                                         name="firstname"
                                         onFocus={setchange}
                                         className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -83,7 +78,7 @@ export const EditProfile = () => {
                                     <span className="text-gray-700 dark:text-gray-400">Lastname</span>
                                     <Field name="lastname"
                                         onFocus={setchange}
-
+                                        disabled={true}
                                         className="block w-full mt-1 border p-2.5 font-medium text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                         type="text" />
                                     <ErrorMessage name="lastname" component="span" className="text-red-500" />

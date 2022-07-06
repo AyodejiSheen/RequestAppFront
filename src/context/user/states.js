@@ -204,7 +204,6 @@ const UserState = (props) => {
                 }
                 setAlert(res)
             } else {
-                console.log(response.data)
                 dispatch({
                     type: EDIT_USER,
                     payload: response.data
