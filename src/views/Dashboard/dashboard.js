@@ -155,7 +155,7 @@ export const Dashboard = () => {
                             <div className="flex flex-wrap items-center text-sm justify-between">
                               <div className="flex items-center ">
                                 {/* <!-- Avatar with inset shadow --> */}
-                                <div className="relative hidden w-8 h-8 mr-3 rounded-full md:block">
+                                <div className="relative w-8 h-8 mr-3 rounded-full">
                                   <img className="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
                                   <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                 </div>

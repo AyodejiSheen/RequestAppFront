@@ -50,11 +50,11 @@ export const MakeRequests = () => {
             <div className="container mx-auto pb-16 pt-2">
                 <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Create A Request</h2>
 
-                <div className='lg:flex gap-24'>
-                    <div className='w-full lg:w-1/2'>
+                <div className='xl:flex gap-24'>
+                    <div className='w-full xl:w-1/2'>
                         <Formik initialValues={intialValues} validationSchema={validationSchema} onSubmit={CreatRequest}>
                             <Form>
-                                <div className="2xl:px-24 2xl:py-16 px-14 py-14 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 space-y-4">
+                                <div className="2xl:px-24 2xl:py-16 md:px-14 py-14 mb-8 md:bg-white rounded-lg md:shadow-md dark:bg-gray-800 space-y-4">
                                     <div className=''>
                                         <label className="block text-sm">
                                             <span className="text-gray-700 dark:text-gray-400">Request Title</span>
