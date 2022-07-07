@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import RequestContext from "../../context/requests/context";
 import UIContext from "../../context/UI/context";
@@ -15,11 +15,26 @@ export const Dashboard = () => {
   let { authState, user } = useContext(UserContext)
   let { allRequests, getRequests, isLoading } = useContext(RequestContext)
 
+  const [personalreq, setPersonalReq] = useState([]);
+  const [accpreq, setaccpReq] = useState([]);
+  const [pendreq, setpendReq] = useState([]);
+
   useEffect(() => {
     getRequests();
-    // let req = allRequests.filter((each, i) => each.id === 5)
-    // console.log(req)
-  }, [])
+
+    if (isLoading) {
+
+      setPersonalReq(allRequests.filter((each) => each.UserId === user.id));
+
+    }
+
+    if(personalreq.length >= 1){
+      setaccpReq(personalreq.filter((each) => each.status === "Approved"))
+      setpendReq(personalreq.filter((each) => each.status === "Pending"))
+
+    }
+
+  }, [authState, personalreq.length])
 
   return (
 
@@ -53,7 +68,7 @@ export const Dashboard = () => {
                     All Your Requests
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    6389
+                    {personalreq.length}
                   </p>
                 </div>
               </div>
@@ -69,7 +84,7 @@ export const Dashboard = () => {
                     Total Accepted Requests
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    6389
+                    {accpreq.length}
                   </p>
                 </div>
               </div>
@@ -85,7 +100,7 @@ export const Dashboard = () => {
                     Pending Requests
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    6389
+                    {pendreq.length}
                   </p>
                 </div>
               </div>
@@ -101,7 +116,7 @@ export const Dashboard = () => {
                     Archived Requests
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    6389
+                    COMING SOON
                   </p>
                 </div>
               </div>
@@ -109,9 +124,23 @@ export const Dashboard = () => {
 
             <h2 className="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Latest Requests</h2>
 
+            {
+              allRequests.length === 0 && (
+                <div className="text-center py-20">
+                  <h2 className="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">There is no request to display</h2>
+                  <p className="mb-6">Be the first to upload a request by  clicking on the button below</p>
+                  <Link to='/dashboard/create-a-request'
+                    className="px-4 py-2 shadow-md shadow-purple-300 dark:shadow-gray-900 text-sm text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                  >
+                    Make a Request
+                  </Link>
+                </div>
+              )
+            }
+
 
             {/* Dashboard request cards */}
-            <div className="xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-x-20 gap-y-10 mt-8 space-y-8 xl:space-y-0">
+            <div className="xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-x-16 gap-y-10 mt-8 space-y-8 xl:space-y-0">
               {
                 allRequests.slice(0).reverse().map((each, i) => {
                   return (

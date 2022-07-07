@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { motion, AnimatePresence } from "framer-motion"; //check note.txt for notes on framer motion
 import UIContext from '../context/UI/context';
 import UserContext from '../context/user/context';
@@ -14,7 +14,12 @@ export const ProfileNav = (props) => {
 
     let { isDark } = useContext(UIContext)
 
-    let {user, logout} = useContext(UserContext)
+    let {user, logout} = useContext(UserContext);
+
+
+    useEffect(() => {
+        
+    }, [])
 
 
     return (

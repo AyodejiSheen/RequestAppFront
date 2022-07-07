@@ -10,13 +10,14 @@ import UserContext from '../../../context/user/context';
 export const ViewRequests = () => {
 
     let { requestId } = useParams();
-    let { ViewRequest, request, isReqLoading } = useContext(RequestContext);
+    let { ViewRequest, request, isReqLoading, acceptReq } = useContext(RequestContext);
     let { user } = useContext(UserContext)
 
 
     useEffect(() => {
         ViewRequest(requestId)
     }, [])
+
 
     return (
         <>
@@ -32,7 +33,7 @@ export const ViewRequests = () => {
                                     <img className="object-cover w-24 mx-auto h-24 rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
 
                                     <div className='text-center'>
-                                        <p className='dark:text-gray-200 text-3xl font-medium'>{request.firstname + " " + request.lastname}</p>
+                                        <p className='dark:text-gray-200 text-3xl font-medium capitalize'>{request.firstname + " " + request.lastname}</p>
                                         <p className='dark:text-gray-500'>{request.email}</p>
                                     </div>
 
@@ -94,13 +95,15 @@ export const ViewRequests = () => {
                                             <p className='dark:text-gray-200 text-base'>{request.itemLoc}</p>
                                         </div>
 
-                                        <div className='flex gap-10 '>
+                                        <div className='md:flex gap-10 '>
                                             {
                                                 user.id !== request.UserId && (
                                                     <button
-                                                        className=" w-full flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
+                                                    onClick={() => acceptReq({userid:user.id, requestid:request.id})}
+                                                    disabled = {request.status === "Approved"}
+                                                        className=" w-full md:flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" 
                                                     >
-                                                        Accepted This Request
+                                                        {request.status === "Approved" ? "Request Has Been Accepted" : "Accept This Request"}
                                                     </button>
                                                 )
                                             }
@@ -108,7 +111,7 @@ export const ViewRequests = () => {
                                             {
                                                 user.id === request.UserId && (
                                                     <button
-                                                        className=" w-full flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
+                                                        className=" w-full md:flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" 
                                                     >
                                                         Edit
                                                     </button>
@@ -119,7 +122,7 @@ export const ViewRequests = () => {
                                             {
                                                 user.id === request.UserId && (
                                                     <button
-                                                        className=" w-full flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
+                                                        className=" w-full md:flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-rose-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-rose-700 focus:outline-none focus:shadow-outline-purple" 
                                                     >
                                                         Delete
                                                     </button>

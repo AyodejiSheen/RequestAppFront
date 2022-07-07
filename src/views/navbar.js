@@ -142,7 +142,7 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="px-6 my-6">
-                                    <NavLink to="create-a-requests">
+                                    <NavLink to="create-a-request">
                                     <button
                                         onClick={toggleNav} className="flex w-full items-center text-sm font-medium md:text-base justify-between px-4 py-2 md:font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                     >

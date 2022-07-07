@@ -289,7 +289,7 @@ const UserState = (props) => {
         let token = data.token
         let check = isJwtExpired(token);
         if (!check) {
-            axios.get(`${baseUrl.baseUrl}/user/verify-resetlink/${id}/${token}`)
+            await axios.get(`${baseUrl.baseUrl}/user/verify-resetlink/${id}/${token}`)
                 .then((response) => {
                     if (response.data.error) {
                         let res = {

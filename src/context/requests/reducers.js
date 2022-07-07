@@ -1,7 +1,8 @@
 import {
     MAKE_REQUEST,
     GET_REQUESTS,
-    VIEW_REQUEST
+    VIEW_REQUEST,
+    ACCEPT_REQ
 } from './actions'
 
 
@@ -30,6 +31,12 @@ const RequestReducer = (state, action) => {
                 ...state,
                 request:action.payload,
                 isReqLoading:true
+            }
+
+        case ACCEPT_REQ:
+            return{
+                ...state,
+                request : {...state.request, status:"Approved"}
             }
 
 

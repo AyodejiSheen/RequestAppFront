@@ -8,8 +8,10 @@ import RequestContext from "./context";
 import {
     MAKE_REQUEST,
     GET_REQUESTS,
-    VIEW_REQUEST
+    VIEW_REQUEST,
+    ACCEPT_REQ
 } from './actions'
+
 import UserContext from "../user/context";
 
 
@@ -27,7 +29,7 @@ const RequestState = (props) => {
         allRequests: null,
         isLoading: false,
         isReqLoading: false,
-        request: null
+        request: null,
     }
 
 
@@ -71,7 +73,7 @@ const RequestState = (props) => {
 
     const getRequests = async () => {
         let token = localStorage.getItem("JWTR");
-        axios.get(`${baseUrl.baseUrl}/request`, {
+        await axios.get(`${baseUrl.baseUrl}/request`, {
             headers: { accessToken: token }
         }).then((response) => {
             if (response.data.error) {
@@ -85,8 +87,6 @@ const RequestState = (props) => {
                     type: GET_REQUESTS,
                     payload: response.data
                 });
-                state.isLoading = false
-                console.log(state.isLoading)
             }
         }).catch((err) => {
             let res = {
@@ -101,7 +101,7 @@ const RequestState = (props) => {
 
     const ViewRequest = async (data) => {
         let token = localStorage.getItem("JWTR");
-        axios.get(`${baseUrl.baseUrl}/request/view/${data}`, {
+        await axios.get(`${baseUrl.baseUrl}/request/view/${data}`, {
             headers: { accessToken: token }
         }).then((response) => {
             if (response.data.error) {
@@ -122,7 +122,38 @@ const RequestState = (props) => {
                 altMsg: "Server Error"
             }
             setAlert(res)
-            console.log(err)
+        })
+    }
+
+
+
+    const acceptReq = async (data) => {
+        let token = localStorage.getItem('JWTR')
+        await axios.put(`${baseUrl.baseUrl}/request/accept-request`, data, {
+            headers: { accessToken: token }
+        }).then((response) => {
+            if (response.data.error) {
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            } else {
+                dispatch({
+                    type: ACCEPT_REQ
+                })
+                let res = {
+                    altType: "success",
+                    altMsg: "Your Accepted This Request!"
+                }
+                setAlert(res);
+            }
+        }).catch((err) => {
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
         })
     }
 
@@ -134,10 +165,11 @@ const RequestState = (props) => {
             MakeRequests,
             getRequests,
             ViewRequest,
+            acceptReq,
             allRequests: state.allRequests,
             isLoading: state.isLoading,
-            request:state.request,
-            isReqLoading : state.isReqLoading
+            request: state.request,
+            isReqLoading: state.isReqLoading,
         }}>
             {props.children}
         </RequestContext.Provider>

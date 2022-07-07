@@ -25,17 +25,10 @@ export const Profile = () => {
     let { user, authState, EditUserProfile } = useContext(UserContext);
     let { setAlert } = useContext(UIContext)
 
-
-
     let { id } = useParams();
     const [eachUser, setEachUser] = useState({});
 
-
-
     let navigate = useNavigate();
-
-
-
 
     const onSubmit = (data) => {
         let details = { ...data, id: user.id };
@@ -51,7 +44,7 @@ export const Profile = () => {
 
     useEffect(() => {
         let token = localStorage.getItem('JWTR')
-        axios.get(`${baseUrl.baseUrl}/user/profile/${id}`, {
+         axios.get(`${baseUrl.baseUrl}/user/profile/${id}`, {
             headers: { accessToken: token }
         }).then((response) => {
             if (response.data.error) {
@@ -94,7 +87,7 @@ export const Profile = () => {
                                     <img src={img1} alt="DP" className='rounded-full mx-auto' />
                                 </div>
                                 <div className='space-y-3 mt-6 dark:text-white'>
-                                    <h2 className='text-4xl font-semibold '>{eachUser.firstname} {eachUser.lastname}</h2>
+                                    <h2 className='text-4xl font-semibold capitalize'>{eachUser.firstname} {eachUser.lastname}</h2>
                                     <p className=' text-base'>{eachUser.email}</p>
                                 </div>
                             </div>
@@ -106,7 +99,7 @@ export const Profile = () => {
                                             <button onClick={() => changeTab("overview")} className='dark:text-gray-400 focus:dark:text-gray-100 flex-1 focus:border-b-2 px-3 pb-2 focus:font-medium focus:border-purple-600 '>Overview</button>
                                             {
                                                 eachUser.id === user.id && (
-                                                    <button onClick={() => changeTab("profile")} className='dark:text-gray-400 flex-1 focus:dark:text-gray-100 focus:border-b-2 px-3 pb-2 focus:font-medium focus:border-purple-600 '>Edit Profile</button>
+                                                    <button onClick={() => changeTab("profile")} className='dark:text-gray-400 flex-1 focus:dark:text-gray-100 focus:border-b-2 px-3 pb-2 focus:font-medium focus:border-purple-600'>Edit Profile</button>
                                                 )
                                             }
 
@@ -157,7 +150,8 @@ export const Profile = () => {
 
                                                     <div className='flex  flex-wrap space-x-10 md:space-x-24 items-center'>
                                                         <p className='w-32 font-bold text-gray-500'>Phone Number</p>
-                                                        <p className='flex-1'>{eachUser.phone}</p>
+                                                        <a href={`tel:${eachUser.phone}`} className='flex-1'>{eachUser.phone} <span className='text-xs text-gray-600'>Click to place a call</span></a>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

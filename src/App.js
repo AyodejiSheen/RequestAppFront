@@ -51,7 +51,7 @@ function App() {
           <Route index element={<Dashboard />}></Route>
           <Route path='profile/:id' element={<Profile />}></Route>
           <Route path='requests' element={<Requests/>}></Route>
-          <Route path='create-a-requests' element={<MakeRequests/>}></Route>
+          <Route path='create-a-request' element={<MakeRequests/>}></Route>
           <Route path="requests/:requestId" element={<ViewRequests/>}></Route>
         </Route>
 
