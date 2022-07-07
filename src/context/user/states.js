@@ -37,7 +37,8 @@ const UserState = (props) => {
         username: null,
         token: null,
         userId: null,
-        authState: false
+        authState: false,
+        notifications:null
     };
 
     const [state, dispatch] = useReducer(UserReducers, initialState);
@@ -363,6 +364,7 @@ const UserState = (props) => {
 
 
 
+
     return (
         <UserContext.Provider value={{
             signup,
@@ -374,6 +376,7 @@ const UserState = (props) => {
             resetLink,
             verifyLink,
             resetPassword,
+            notifications:state.notifications,
             user: state.user,
             isDark: state.isDark,
             userId: state.userId,

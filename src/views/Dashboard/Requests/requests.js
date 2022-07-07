@@ -36,9 +36,8 @@ export const Requests = () => {
             {
               allRequests.slice(0).reverse().map((each, i) => {
                 return (
-                  <>
-                    <div className="space-y-4">
-                      <Link to={`${each.id}`} key={each.id}>
+                    <div className="space-y-4" key={each.id}>
+                      <Link to={`${each.id}`}>
                         <motion.div
                           animate={{ scale: 1, opacity: 1 }}
                           initial={{ scale: 0, opacity: 0.2 }}
@@ -79,7 +78,6 @@ export const Requests = () => {
                         </motion.div>
                       </Link>
                     </div>
-                  </>
                 )
               })
             }

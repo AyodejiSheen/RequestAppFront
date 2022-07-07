@@ -23,9 +23,7 @@ export const Dashboard = () => {
     getRequests();
 
     if (isLoading) {
-
       setPersonalReq(allRequests.filter((each) => each.UserId === user.id));
-
     }
 
     if(personalreq.length >= 1){
@@ -97,7 +95,7 @@ export const Dashboard = () => {
                 </div>
                 <div>
                   <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Pending Requests
+                    Your Pending Requests
                   </p>
                   <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     {pendreq.length}

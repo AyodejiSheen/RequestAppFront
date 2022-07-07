@@ -87,6 +87,7 @@ const RequestState = (props) => {
                     type: GET_REQUESTS,
                     payload: response.data
                 });
+
             }
         }).catch((err) => {
             let res = {
@@ -96,7 +97,6 @@ const RequestState = (props) => {
             setAlert(res)
         })
     }
-
 
 
     const ViewRequest = async (data) => {
@@ -126,7 +126,6 @@ const RequestState = (props) => {
     }
 
 
-
     const acceptReq = async (data) => {
         let token = localStorage.getItem('JWTR')
         await axios.put(`${baseUrl.baseUrl}/request/accept-request`, data, {
@@ -141,7 +140,51 @@ const RequestState = (props) => {
             } else {
                 dispatch({
                     type: ACCEPT_REQ
+                });
+
+                axios.post(`${baseUrl.baseUrl}/notify`, data, {
+                    headers: { accessToken: token }
+                }).then((response) => {
+                    if (response.data.error) {
+                        let res = {
+                            altType: "danger",
+                            altMsg: response.data.error
+                        }
+                        setAlert(res)
+                    } else {
+                        console.log(response.data)
+                    }
+                }).catch((err) => {
+                    let res = {
+                        altType: "danger",
+                        altMsg: "Server Error"
+                    }
+                    setAlert(res)
                 })
+
+                setTimeout(() => {
+                    axios.post(`${baseUrl.baseUrl}/notify/accepter`, data, {
+                        headers: { accessToken: token }
+                    }).then((response) => {
+                        if (response.data.error) {
+                            let res = {
+                                altType: "danger",
+                                altMsg: response.data.error
+                            }
+                            setAlert(res)
+                        } else {
+                            console.log(response.data)
+                        }
+                    }).catch((err) => {
+                        let res = {
+                            altType: "danger",
+                            altMsg: "Server Error"
+                        }
+                        setAlert(res)
+                    })
+                }, 1000)
+
+
                 let res = {
                     altType: "success",
                     altMsg: "Your Accepted This Request!"

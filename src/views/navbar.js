@@ -7,13 +7,15 @@ import UIContext from "../context/UI/context";
 import { MessageNav } from "../components/messageNav";
 import { ProfileNav } from "../components/profileNav";
 import UserContext from "../context/user/context";
+import RequestContext from "../context/requests/context";
 
 
 
 export const Navbar = () => {
 
     let { isDark } = useContext(UIContext);
-    let { handleAuth } = useContext(UserContext);
+    let { handleAuth, notifications } = useContext(UserContext);
+    let { allRequests } = useContext(RequestContext);
 
     const [mobileNav, setMobileNav] = useState(false);
     const [showMsg, setShowMsg] = useState(false);

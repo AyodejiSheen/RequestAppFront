@@ -32,6 +32,7 @@ const UserReducers = (state, action) => {
                 authState: true,
                 userId: res.user.id,
                 user: res.user,
+                notifications : res.message
             }
 
         case SIGN_OUT:
@@ -48,8 +49,9 @@ const UserReducers = (state, action) => {
             return {
                 ...state,
                 authState: true,
-                user: authRes,
-                userId: authRes.id,
+                user: authRes.user,
+                userId: authRes.user.id,
+                notifications:authRes.message
             }
 
         case AUTH_ERROR:
