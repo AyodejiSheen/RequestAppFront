@@ -17,6 +17,7 @@ import { Profile } from './views/Dashboard/Profile/profile';
 import { Requests } from './views/Dashboard/Requests/requests';
 import { MakeRequests } from './views/Dashboard/Requests/makeRequest';
 import { ViewRequests } from './views/Dashboard/Requests/ViewRequests';
+import ScrollToTop from './views/scrollToTop';
 
 
 
@@ -34,6 +35,7 @@ function App() {
     <React.Fragment>
 
       <Alert />
+      <ScrollToTop/>
       <Routes>
 
         <Route path='/' element={<Login />}></Route>
