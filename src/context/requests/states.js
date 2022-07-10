@@ -9,7 +9,8 @@ import {
     MAKE_REQUEST,
     GET_REQUESTS,
     VIEW_REQUEST,
-    ACCEPT_REQ
+    ACCEPT_REQ,
+    EDIT_REQ
 } from './actions'
 
 import UserContext from "../user/context";
@@ -187,7 +188,7 @@ const RequestState = (props) => {
 
                 let res = {
                     altType: "success",
-                    altMsg: "Your Accepted This Request!"
+                    altMsg: "You have Accepted This Request!"
                 }
                 setAlert(res);
             }
@@ -202,6 +203,41 @@ const RequestState = (props) => {
 
 
 
+    //to edit requests
+    const EditRequest = async (value) => {
+        let token = localStorage.getItem('JWTR')
+        let { data, id } = value
+        axios.put(`${baseUrl.baseUrl}/request/edit-request/${id}`, data, {
+            headers: { accessToken: token }
+        }).then((response) => {
+            if (response.data.error) {
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            } else {
+                dispatch({
+                    type: EDIT_REQ,
+                    payload: data
+                })
+
+                let res = {
+                    altType: "success",
+                    altMsg: "Your Request has been Updated"
+                }
+                setAlert(res)
+            }
+        }).catch((err) => {
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
+        })
+    }
+
+
 
     return (
         <RequestContext.Provider value={{
@@ -209,6 +245,7 @@ const RequestState = (props) => {
             getRequests,
             ViewRequest,
             acceptReq,
+            EditRequest,
             allRequests: state.allRequests,
             isLoading: state.isLoading,
             request: state.request,

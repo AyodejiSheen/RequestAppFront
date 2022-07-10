@@ -2,7 +2,8 @@ import {
     MAKE_REQUEST,
     GET_REQUESTS,
     VIEW_REQUEST,
-    ACCEPT_REQ
+    ACCEPT_REQ,
+    EDIT_REQ
 } from './actions'
 
 
@@ -37,6 +38,19 @@ const RequestReducer = (state, action) => {
             return{
                 ...state,
                 request : {...state.request, status:"Approved"}
+            }
+
+        case EDIT_REQ:
+            return{
+                ...state,
+                request : {...state.request, 
+                requestTitle: action.payload.requestTitle,
+                itemName:action.payload.itemName,
+                itemDesc: action.payload.itemDesc,
+                quantity:action.payload.quantity,
+                itemLoc: action.payload.itemLoc,
+                requestBody:action.payload.requestBody,
+                }
             }
 
 

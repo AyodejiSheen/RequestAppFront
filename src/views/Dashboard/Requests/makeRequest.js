@@ -54,7 +54,7 @@ export const MakeRequests = () => {
                     <div className='w-full'>
                         <Formik initialValues={intialValues} validationSchema={validationSchema} onSubmit={CreatRequest}>
                             <Form>
-                                <div className="2xl:px-24 2xl:py-16 md:px-14 py-14 mb-8 md:bg-white rounded-lg md:shadow-md dark:bg-gray-800 space-y-4">
+                                <div className="2xl:px-24 2xl:py-16 md:px-14 py-14 mb-8 md:bg-white rounded-lg md:shadow-md md:dark:bg-gray-800 space-y-4">
                                     <div className=''>
                                         <label className="block text-sm">
                                             <span className="text-gray-700 dark:text-gray-400">Request Title</span>
@@ -63,7 +63,7 @@ export const MakeRequests = () => {
                                                 className="block w-full mt-1 border p-2.5 text-sm font-medium dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" type="text"
                                             />
                                             <div className='text-gray-500'>
-                                                <label> I Need help  </label><Field name="requestTitle" disabled={true}/>
+                                                <label> I Need help  </label><Field name="requestTitle" disabled={true} />
                                             </div>
                                             <ErrorMessage name="requestTitle" component="span" className="text-red-500" /> {/*to display the error message for the field*/}
                                         </label>

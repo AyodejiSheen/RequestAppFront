@@ -28,14 +28,15 @@ export const Dashboard = () => {
 
       if (isLoading) {
         setPersonalReq(allRequests.filter((each) => each.UserId === user.id));
-        setaccpReq(personalreq.filter((each) => each.status === "Approved"))
-        setpendReq(personalreq.filter((each) => each.status === "Pending"));
-        console.log("ran")
+        setaccpReq(allRequests.filter((each) => each.acceptId === user.id))
+
+          setpendReq(personalreq.filter((each) => each.status === "Pending"));
+        
       }
 
     }
 
-  }, [authState, personalreq.length])
+  }, [authState, isLoading, personalreq.length])
 
   return (
 
