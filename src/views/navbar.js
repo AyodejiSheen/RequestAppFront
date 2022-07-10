@@ -103,7 +103,7 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="">
-                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded font-medium bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex font-medium items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="accepted-requests" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded font-medium bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 inline-flex font-medium items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"
@@ -124,7 +124,7 @@ export const Navbar = () => {
 
 
                                 <div className="">
-                                    <NavLink to="hh" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm font-medium md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 font-medium inline-flex items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
+                                    <NavLink to="personal-requests" onClick={toggleNav} className={({ isActive }) => (isActive ? "border-l-4 rounded bg-gray-100 dark:bg-gray-700 border-purple-600 text-gray-800 px-6 py-3 inline-flex items-center w-full text-sm font-medium md:text-base md:font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" : "px-6 py-3 font-medium inline-flex items-center w-full text-sm md:text-base md:font-semibold text-gray-500 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-500")}>
                                         <svg
                                             className="w-5 h-5"
                                             aria-hidden="true"

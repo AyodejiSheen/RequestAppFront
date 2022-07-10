@@ -33,7 +33,7 @@ export const MakeRequests = () => {
         itemDesc: Yup.string().required('Please describe the item'),
         quantity: Yup.number().required("Please input the quantity number"),
         itemLoc: Yup.string().required("Enter the item Location"),
-        requestBody: Yup.string().min(10).max(200).required("Give reasons for the request"),
+        requestBody: Yup.string().min(10).max(500).required("Give reasons for the request"),
     })
 
 
@@ -50,8 +50,8 @@ export const MakeRequests = () => {
             <div className="container mx-auto pb-16 pt-2">
                 <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Create A Request</h2>
 
-                <div className='xl:flex gap-24'>
-                    <div className='w-full xl:w-1/2'>
+                <div className=''>
+                    <div className='w-full'>
                         <Formik initialValues={intialValues} validationSchema={validationSchema} onSubmit={CreatRequest}>
                             <Form>
                                 <div className="2xl:px-24 2xl:py-16 md:px-14 py-14 mb-8 md:bg-white rounded-lg md:shadow-md dark:bg-gray-800 space-y-4">
@@ -138,17 +138,6 @@ export const MakeRequests = () => {
                                 </div>
                             </Form>
                         </Formik>
-                    </div>
-                    {/* animate={{ x: [0, -20, -50, -10], scale: 1 }}
-                            initial={{ scale: 0 }} */}
-
-                    <div className='w-full lg:w-1/2'>
-                        <motion.div
-                            animate={{ x: [0, -50, 100, 0], opacity: [0, 0.5, 1, 0] }}
-                            transition={{ repeat: Infinity, duration: 5 }}
-                        >
-                            <img src={img} className="py-5 w-4/5" alt="Request" />
-                        </motion.div>
                     </div>
                 </div>
 

@@ -18,6 +18,8 @@ import { Requests } from './views/Dashboard/Requests/requests';
 import { MakeRequests } from './views/Dashboard/Requests/makeRequest';
 import { ViewRequests } from './views/Dashboard/Requests/ViewRequests';
 import ScrollToTop from './views/scrollToTop';
+import { AcceptedReq } from './views/Dashboard/Requests/AcceptedReq';
+import { PersonReq } from './views/Dashboard/Requests/PersonalReq';
 
 
 
@@ -55,6 +57,9 @@ function App() {
           <Route path='requests' element={<Requests/>}></Route>
           <Route path='create-a-request' element={<MakeRequests/>}></Route>
           <Route path="requests/:requestId" element={<ViewRequests/>}></Route>
+
+          <Route path="accepted-requests" element={<AcceptedReq/>}></Route>
+          <Route path="personal-requests" element={<PersonReq/>}></Route>
         </Route>
 
         <Route path='*' element={<Errorpage />}></Route>

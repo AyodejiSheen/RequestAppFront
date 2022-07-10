@@ -56,7 +56,6 @@ export const Profile = () => {
                 navigate('/');
             } else {
                 setEachUser(response.data)
-                console.log(response)
             }
         }).catch((err) => {
             let res = {
