@@ -20,6 +20,7 @@ export const Navbar = () => {
     const [mobileNav, setMobileNav] = useState(false);
     const [showMsg, setShowMsg] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
+    
 
     const toggleNav = () => {
         setMobileNav(!mobileNav)
@@ -27,6 +28,7 @@ export const Navbar = () => {
 
     const toggleMsg = () => {
         setShowMsg(!showMsg)
+        
     }
 
     const toggleProfile = () => {

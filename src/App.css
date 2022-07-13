@@ -36,11 +36,12 @@
   list-style: none;
   display: flex;
   justify-content: center;
+  margin: auto;
 }
 
 .paginationBttns a {
-  padding: 10px 16px;
-  margin: 8px;
+  padding: 7px 14px;
+  margin: 10px;
   border-radius: 5px;
   border: 1px solid #bebebe;
   color: #bebebe;

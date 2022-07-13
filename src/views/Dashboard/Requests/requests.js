@@ -23,7 +23,7 @@ export const Requests = () => {
 
   //to setup pagination
   const [pageNumber, setPageNumber] = useState(0); /// to hold the current page number
-  const RequestPerPage = 1;  //number of request to be showing per pages
+  const RequestPerPage = 24;  //number of request to be showing per pages
   const pagesVisited = pageNumber * RequestPerPage;  // to accounted for all the pages visted and request showed
 
   const changePage = ({ selected }) => {
@@ -40,11 +40,11 @@ export const Requests = () => {
 
         setdisplayRequest(
           allRequests
-            .slice(pagesVisited, pagesVisited + RequestPerPage)
+            .slice(pagesVisited, pagesVisited + RequestPerPage).reverse()
             .map((each) => {
               return (
                 <div className="space-y-4">
-                  <Link to={`requests/${each.id}`} key={each.id}>
+                  <Link to={`${each.id}`} key={each.id}>
                     <motion.div
                       animate={{ scale: 1, opacity: 1 }}
                       initial={{ scale: 0, opacity: 0.2 }}
@@ -86,8 +86,8 @@ export const Requests = () => {
                   </Link>
                 </div>
               )
-            })   //slice through the array from the total number of all the request show before to plus the addition of the request per page
-          // then map the new array out
+            }) //slice through the array from the total number of all the request show before to plus the addition of the request per page
+              // then map the new array out
         )
 
       }

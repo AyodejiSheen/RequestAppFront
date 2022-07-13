@@ -12,7 +12,7 @@ import UIContext from '../../../context/UI/context';
 export const ViewRequests = () => {
 
     let { requestId } = useParams();
-    let { ViewRequest, request, isReqLoading, acceptReq, EditRequest } = useContext(RequestContext);
+    let { ViewRequest, request, isReqLoading, acceptReq, EditRequest, deleteReq } = useContext(RequestContext);
     let { user, authState } = useContext(UserContext)
     let { setAlert } = useContext(UIContext)
 
@@ -54,15 +54,13 @@ export const ViewRequests = () => {
 
 
     const EditReq = (data, { resetForm }) => {
+        EditRequest({
+            data,
+            id: the.id
+        });
 
-            EditRequest({
-                data, 
-                id:the.id
-            });
-
-            resetForm();
-            setEdit(false)       
-
+        resetForm();
+        setEdit(false)
     }
 
 
@@ -96,7 +94,7 @@ export const ViewRequests = () => {
 
                                 </div>
 
-                                <div className='px-8 py-8 shadow-md bg-white dark:bg-gray-800 2xl:w-3/5 rounded-xl'>
+                                <div className='px-8 py-8 shadow-md dark:bg-gray-800 2xl:w-3/5 rounded-xl'>
                                     {
                                         !edit ? (
                                             <>
@@ -185,6 +183,7 @@ export const ViewRequests = () => {
                                                         {
                                                             user.id === request.UserId && (
                                                                 <button
+                                                                    onClick={() => deleteReq(request.id)}
                                                                     className=" w-full md:flex-1 px-4 py-3.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-8 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-rose-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-rose-700 focus:outline-none focus:shadow-outline-purple"
                                                                 >
                                                                     Delete

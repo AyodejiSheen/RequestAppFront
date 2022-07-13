@@ -24,7 +24,7 @@ export const Dashboard = () => {
 
   //to setup pagination
   const [pageNumber, setPageNumber] = useState(0); /// to hold the current page number
-  const RequestPerPage = 1;  //number of request to be showing per pages
+  const RequestPerPage = 24;  //number of request to be showing per pages
   const pagesVisited = pageNumber * RequestPerPage;  // to accounted for all the pages visted and request showed
 
   const changePage = ({ selected }) => {
@@ -32,10 +32,12 @@ export const Dashboard = () => {
   };
 
 
+
   useEffect(() => {
 
     if (authState) {
       getRequests();
+      console.log("getting")
 
       if (isLoading) {
         setPersonalReq(allRequests.filter((each) => each.UserId === user.id));
@@ -46,7 +48,7 @@ export const Dashboard = () => {
 
         setdisplayRequest(
           allRequests
-            .slice(pagesVisited, pagesVisited + RequestPerPage)
+            .slice(pagesVisited, pagesVisited + RequestPerPage).reverse()
             .map((each) => {
               return (
                 <div className="space-y-4">
@@ -225,8 +227,8 @@ export const Dashboard = () => {
             </div>
 
             <ReactPaginate
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
+              previousLabel={"<<"}
+              nextLabel={">>"}
               pageCount={pageCount}
               onPageChange={changePage}
               containerClassName={"paginationBttns"}

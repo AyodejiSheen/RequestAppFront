@@ -14,6 +14,7 @@ import {
 } from './actions'
 
 import UserContext from "../user/context";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -24,6 +25,7 @@ const RequestState = (props) => {
     let { setAlert } = useContext(UIContext);
     let { user } = useContext(UserContext);
 
+    let navigate = useNavigate();
 
 
     const initialState = {
@@ -239,6 +241,40 @@ const RequestState = (props) => {
 
 
 
+    const deleteReq = async (data) => {
+        let token = localStorage.getItem("JWTR")
+        axios.delete(`${baseUrl.baseUrl}/request/delete/${data}`, {
+            headers: { accessToken: token }
+        }).then((response) => {
+            if (response.data.error) {
+                let res = {
+                    altType: "danger",
+                    altMsg: response.data.error
+                }
+                setAlert(res)
+            } else {
+                let res = {
+                    altType: "success",
+                    altMsg: "Request deleted successfully"
+                }
+                setAlert(res)
+                navigate(-1)
+            }
+        }).catch((err) => {
+            let res = {
+                altType: "danger",
+                altMsg: "Server Error"
+            }
+            setAlert(res)
+        })
+
+    }
+
+
+
+
+
+
     return (
         <RequestContext.Provider value={{
             MakeRequests,
@@ -246,6 +282,7 @@ const RequestState = (props) => {
             ViewRequest,
             acceptReq,
             EditRequest,
+            deleteReq,
             allRequests: state.allRequests,
             isLoading: state.isLoading,
             request: state.request,
