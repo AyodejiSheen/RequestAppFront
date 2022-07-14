@@ -3,7 +3,8 @@ import {
     GET_REQUESTS,
     VIEW_REQUEST,
     ACCEPT_REQ,
-    EDIT_REQ
+    EDIT_REQ,
+    DEL_REQUEST
 } from './actions'
 
 
@@ -51,6 +52,12 @@ const RequestReducer = (state, action) => {
                 itemLoc: action.payload.itemLoc,
                 requestBody:action.payload.requestBody,
                 }
+            }
+
+        case DEL_REQUEST:
+            return{
+                ...state,
+                allRequests: state.allRequests.filter((each) => each.id !== action.payload)
             }
 
 

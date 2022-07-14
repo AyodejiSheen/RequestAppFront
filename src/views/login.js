@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Theme } from '../components/theme'
 import UIContext from '../context/UI/context'
 import darkImg from '../media/login-office-dark.jpeg'
@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 import UserContext from '../context/user/context'
+
+import { motion, AnimatePresence } from "framer-motion"; //check note.txt for notes on framer motion
 
 
 
@@ -25,6 +27,23 @@ export const Login = () => {
         password: Yup.string()
             .required('Password is required')
     });
+
+    let [log, setLog] = useState(false);
+
+    const loginFunc = (data) => {
+        setLog(true)
+
+        setTimeout(async () => {
+            let logging = await login(data);
+            if (logging) {
+                setLog(true)
+            } else {
+                setLog(false)
+            }
+        }, 2000)
+
+
+    }
 
 
 
@@ -54,7 +73,7 @@ export const Login = () => {
                                     <Formik
                                         validationSchema={LoginSchema}
                                         initialValues={{ email: '', password: '' }}
-                                        onSubmit={(data) => login(data)}
+                                        onSubmit={(data) => loginFunc(data)}
                                     >
                                         <Form>
                                             <label className="block text-sm">
@@ -70,10 +89,18 @@ export const Login = () => {
                                             </label>
 
                                             {/* <!-- You should use a button here, as the anchor is only used for the example  --> */}
-                                            <button 
-                                                className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
+                                            <button
+                                                className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
                                             >
-                                                Log in
+                                                {log ? (
+                                                        <motion.div
+                                                            animate={{x:[-20, 20], y:[0, -10]}}
+                                                            transition={{x:{yoyo:Infinity, duration:0.5}, y:{yoyo:Infinity, duration:0.25, ease:'easeInOut'}}}
+                                                            className="w-3 h-3 rounded-full bg-white mx-auto my-1.5"
+                                                        >
+
+                                                        </motion.div>
+                                                ) : "Log in"}
                                             </button>
                                         </Form>
                                     </Formik>

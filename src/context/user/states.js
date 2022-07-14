@@ -58,6 +58,7 @@ const UserState = (props) => {
                     altMsg: response.data.error
                 }
                 setAlert(res)
+                return false;
             } else {
                 setTimeout(() => {
                     let res = {
@@ -67,6 +68,7 @@ const UserState = (props) => {
                     setAlert(res)
                     navigate('/')
                 }, 1000)
+                return true
             }
         }).catch((err) => {
             let res = {
@@ -74,6 +76,7 @@ const UserState = (props) => {
                 altMsg: "Server Error"
             }
             setAlert(res)
+            return false;
         });
     }
 
@@ -89,6 +92,7 @@ const UserState = (props) => {
                     altMsg: response.data.error
                 }
                 setAlert(res)
+                return false;
             } else {
                 localStorage.setItem("JWTR", response.data.token);
                 dispatch({
@@ -103,6 +107,7 @@ const UserState = (props) => {
                     setAlert(res)
                     navigate('/dashboard')
                 }, 1000)
+                return true;
             }
         }).catch((err) => {
             let res = {
@@ -110,6 +115,7 @@ const UserState = (props) => {
                 altMsg: "Server Error"
             }
             setAlert(res)
+            return false
         });
     }
 

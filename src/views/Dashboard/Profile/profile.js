@@ -190,7 +190,7 @@ export const Profile = () => {
 
 
 
-                        <div className='text-center mt-6 text-sm dark:text-gray-500 border-t pt-8 '>
+                        <div className='text-center mt-6 xl:mt-24 text-sm dark:text-gray-500 border-t pt-8 '>
                             <p>© Copyright Ayodeji. All Rights Reserved</p>
                             <p>Designed by Ayodeji</p>
                         </div>

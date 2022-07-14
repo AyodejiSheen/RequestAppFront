@@ -10,16 +10,11 @@ import { Link } from 'react-router-dom';
 
 export const ProfileNav = (props) => {
 
-    let { showProfile } = props
+    let { showProfile, toggleProfile } = props
 
     let { isDark } = useContext(UIContext)
 
     let {user, logout} = useContext(UserContext);
-
-
-    useEffect(() => {
-        
-    }, [])
 
 
     return (
@@ -45,7 +40,7 @@ export const ProfileNav = (props) => {
                                     <hr className='dark:opacity-10' />
                                 </div>
 
-                                <Link to={`profile/${user.id}`}>
+                                <Link to={`profile/${user.id}`} onClick={toggleProfile}>
                                     <div className='px-6 py-3 cursor-pointer hover:bg-purple-50 hover:dark:bg-gray-700'>
                                         <div className='flex gap-5 items-center'>
                                             <div>
@@ -63,7 +58,7 @@ export const ProfileNav = (props) => {
                                 </Link>
 
 
-                                <div>
+                                <Link to={`profile/${user.id}`} onClick={toggleProfile}>
                                     <div className='px-6 py-3 cursor-pointer hover:bg-purple-50 hover:dark:bg-gray-700'>
                                         <div className='flex gap-5 items-center'>
                                             <div>
@@ -79,7 +74,7 @@ export const ProfileNav = (props) => {
                                         </div>
                                     </div>
                                     <hr className='dark:opacity-10' />
-                                </div>
+                                </Link>
 
 
                                 <div>

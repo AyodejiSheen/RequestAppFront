@@ -3,6 +3,8 @@ import RequestContext from '../../../context/requests/context'
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ReactPaginate from 'react-paginate'
+import UIContext from '../../../context/UI/context';
+import { ReqSkeleton } from '../../../skeletons/reqSkeleton';
 
 
 
@@ -15,6 +17,8 @@ export const Requests = () => {
 
 
   let { getRequests, isLoading, allRequests } = useContext(RequestContext);
+
+  let { isDark } = useContext(UIContext);
 
 
 
@@ -30,14 +34,22 @@ export const Requests = () => {
     setPageNumber(selected)
   };
 
+  let [skeleton, setSkeleton] = useState(false)
+
+
+
+
+
 
   useEffect(() => {
 
-      getRequests();
+    getRequests();
 
-      if (isLoading) {
-        setpageCount(Math.ceil(allRequests.length / RequestPerPage))//ceil is  a math function in javascript to round up
+    if (isLoading) {
+      setpageCount(Math.ceil(allRequests.length / RequestPerPage))//ceil is  a math function in javascript to round up
 
+      setTimeout(() => {
+        setSkeleton(true)
         setdisplayRequest(
           allRequests
             .slice(pagesVisited, pagesVisited + RequestPerPage).reverse()
@@ -87,12 +99,11 @@ export const Requests = () => {
                 </div>
               )
             }) //slice through the array from the total number of all the request show before to plus the addition of the request per page
-              // then map the new array out
+          // then map the new array out
         )
+      }, 2000)
 
-      }
-
-    
+    }
 
   }, [isLoading, pageNumber])
 
@@ -102,13 +113,12 @@ export const Requests = () => {
     <>
 
       <div className="container mx-auto pb-16 pt-2">
-        <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Requests</h2>
 
         {
           isLoading ?
 
             <>
-              <h2 className="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Latest Requests</h2>
+              <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Requests</h2>
 
               {
                 allRequests.length === 0 && (
@@ -127,7 +137,13 @@ export const Requests = () => {
 
               {/* Dashboard request cards */}
               <div className="xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-x-16 gap-y-10 mt-8 space-y-8 xl:space-y-0 mb-20">
-                {displayRequest}
+                {
+                  skeleton ? (
+                    displayRequest
+                  ) : (
+                    [1, 2, 3, 4, 5, 6].map((n) => <ReqSkeleton key={n} theme={isDark ? "dark" : "light"} />)
+                  )
+                }
               </div>
 
               <ReactPaginate
@@ -143,7 +159,15 @@ export const Requests = () => {
               />
 
             </> :
-            <p>Requests Loading...</p>
+            (
+              <motion.div
+                animate={{ x: [-20, 20], y: [0, -10] }}
+                transition={{ x: { yoyo: Infinity, duration: 0.5 }, y: { yoyo: Infinity, duration: 0.25, ease: 'easeInOut' } }}
+                className="w-3 h-3 rounded-full bg-white mx-auto my-1.5"
+              >
+
+              </motion.div>
+            )
         }
       </div>
 

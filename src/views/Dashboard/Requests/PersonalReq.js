@@ -73,7 +73,7 @@ export const PersonReq = () => {
                                 personal.length === 0 ? (
                                     <div className=" py-20 mx-auto text-center">
                                         <h2 className="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">You haven't create any request yet</h2>
-                                        <p className="mb-6">Create one by following the link below</p>
+                                        <p className="mb-6 mt-2.5 dark:text-gray-400">Create one by following the link below</p>
                                         <Link to='/dashboard/create-a-request'
                                             className="px-4 py-2 shadow-md shadow-purple-300 dark:shadow-gray-900 text-sm text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                                         >

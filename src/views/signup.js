@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Theme } from '../components/theme'
 import UIContext from '../context/UI/context'
 import Logo from '../media/loder.png'
@@ -14,6 +14,18 @@ import { useNavigate } from "react-router-dom";
 import baseUrl from '../baseUrl';
 import UserContext from '../context/user/context'
 
+import { motion, AnimatePresence } from "framer-motion"; //check note.txt for notes on framer motion
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const Signup = () => {
@@ -24,6 +36,9 @@ export const Signup = () => {
 
     const navigate = useNavigate();
 
+    const [sign, setSign] = useState(false)
+
+
     //creating  intialvalues for formik
     const intialValues = {
         firstname: "",// for title field
@@ -33,7 +48,7 @@ export const Signup = () => {
         phone: "",
         password: "",
         cpassword: "",
-        about:"Hi, Am here on Reqco!"
+        about: "Hi, Am here on Reqco!"
     }
 
 
@@ -51,20 +66,31 @@ export const Signup = () => {
 
 
 
-    const onSubmit = async (data, {resetForm}) => {
-        let details = data;
-        if (details.cpassword !== details.password) {
-            let res = {
-                altType: "danger",
-                altMsg: "Password doesn't Match"
+    const onSubmit = (data, { resetForm }) => {
+        setSign(true)
+        setTimeout(async () => {
+            let details = data;
+            if (details.cpassword !== details.password) {
+                let res = {
+                    altType: "danger",
+                    altMsg: "Password doesn't Match"
+                }
+                setAlert(res)
+                setSign(false)
+            } else {
+                let signingup = await signup(data);
+                if (signingup) {
+                    setSign(true)
+                } else {
+                    setSign(false)
+                }
             }
-            setAlert(res)
-        } else {
-            await signup(data);
-            resetForm();
-        }
+        }, 2000)
     }
 
+
+
+    
 
     return (
         <>
@@ -212,10 +238,17 @@ export const Signup = () => {
                                                 </div>
                                                 {/* <!-- You should use a button here, as the anchor is only used for the example  --> */}
                                                 <button
-                                                    type='submit'
-                                                    className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                                    className="block w-full px-4 py-2.5 shadow-md shadow-purple-300 dark:shadow-gray-900 mt-4 text-sm font-medium text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" type='submit'
                                                 >
-                                                    Create Account
+                                                    {sign ? (
+                                                        <motion.div
+                                                            animate={{ x: [-20, 20], y: [0, -10] }}
+                                                            transition={{ x: { yoyo: Infinity, duration: 0.5 }, y: { yoyo: Infinity, duration: 0.25, ease: 'easeInOut' } }}
+                                                            className="w-3 h-3 rounded-full bg-white mx-auto my-1.5"
+                                                        >
+
+                                                        </motion.div>
+                                                    ) : "Create Account"}
                                                 </button>
                                             </Form>
                                         </Formik>

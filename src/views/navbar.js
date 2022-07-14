@@ -28,7 +28,6 @@ export const Navbar = () => {
 
     const toggleMsg = () => {
         setShowMsg(!showMsg)
-        
     }
 
     const toggleProfile = () => {
@@ -206,7 +205,7 @@ export const Navbar = () => {
                                             <img className="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;s=aa3a807e1bbdfd4364d1f449eaa96d82" alt="" aria-hidden="true" />
                                         </button>
 
-                                        <ProfileNav showProfile={showProfile} />
+                                        <ProfileNav showProfile={showProfile} toggleProfile={toggleProfile}/>
                                     </div>
                                 </div>
 

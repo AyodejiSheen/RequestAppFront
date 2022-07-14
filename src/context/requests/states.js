@@ -10,7 +10,8 @@ import {
     GET_REQUESTS,
     VIEW_REQUEST,
     ACCEPT_REQ,
-    EDIT_REQ
+    EDIT_REQ,
+    DEL_REQUEST
 } from './actions'
 
 import UserContext from "../user/context";
@@ -63,6 +64,7 @@ const RequestState = (props) => {
                     altMsg: "Your Request is Created!"
                 }
                 setAlert(res)
+                navigate('dashboard')
             }
         }).catch((err) => {
             let res = {
@@ -90,7 +92,6 @@ const RequestState = (props) => {
                     type: GET_REQUESTS,
                     payload: response.data
                 });
-
             }
         }).catch((err) => {
             let res = {
@@ -253,6 +254,12 @@ const RequestState = (props) => {
                 }
                 setAlert(res)
             } else {
+
+                dispatch({
+                    type: DEL_REQUEST,
+                    payload: data
+                })
+
                 let res = {
                     altType: "success",
                     altMsg: "Request deleted successfully"
