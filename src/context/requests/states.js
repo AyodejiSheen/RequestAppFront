@@ -188,8 +188,6 @@ const RequestState = (props) => {
                         setAlert(res)
                     })
                 }, 1000)
-
-
                 let res = {
                     altType: "success",
                     altMsg: "You have Accepted This Request!"
