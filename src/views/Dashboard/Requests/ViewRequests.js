@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import RequestContext from '../../../context/requests/context';
 import UserContext from '../../../context/user/context';
-
+import { motion } from "framer-motion";
 import * as Yup from 'yup';
 import { Field, Form, ErrorMessage, Formik } from 'formik';
 import UIContext from '../../../context/UI/context';
 
-
+import male from '../../../media/male.jpg'
+import female from '../../../media/female.jpg'
 
 export const ViewRequests = () => {
 
@@ -77,7 +78,7 @@ export const ViewRequests = () => {
 
                             <div className='xl:flex xl:gap-28 2xl:gap-40 space-y-6 md:space-y-0'>
                                 <div className='xl:w-2/5 dark:bg-gray-800 h-80 rounded-lg py-10 space-y-6 shadow-md'>
-                                    <img className="object-cover w-24 mx-auto h-24 rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
+                                    <img className="object-cover w-28 mx-auto rounded-full" src={request.gender === "male" ? male : female} alt="" loading="lazy" />
 
                                     <div className='text-center'>
                                         <p className='dark:text-gray-200 text-3xl font-medium capitalize'>{request.firstname + " " + request.lastname}</p>
@@ -319,16 +320,16 @@ export const ViewRequests = () => {
                         </div>
                     </div> :
 
-
-
-
-
-
-
-
-
                     <div>
-                        <p>Loading</p>
+                        
+                        <motion.div
+                            animate={{ x: [-20, 20], y: [0, -10] }}
+                            transition={{ x: { yoyo: Infinity, duration: 0.5 }, y: { yoyo: Infinity, duration: 0.25, ease: 'easeInOut' } }}
+                            className="w-3 h-3 rounded-full mx-auto my-1.5 mt-32 bg-purple-700"
+                        >
+
+                        </motion.div>
+                        
                     </div>
             }
 

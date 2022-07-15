@@ -139,7 +139,15 @@ export const PersonReq = () => {
                         </>
                     ) :
 
-                        <p> Requests Loading...</p>
+                    (
+                        <motion.div
+                          animate={{ x: [-20, 20], y: [0, -10] }}
+                          transition={{ x: { yoyo: Infinity, duration: 0.5 }, y: { yoyo: Infinity, duration: 0.25, ease: 'easeInOut' } }}
+                          className="w-3 h-3 rounded-full mx-auto my-1.5 mt-32 bg-purple-700"
+                        >
+          
+                        </motion.div>
+                      )
                 }
             </div>
 

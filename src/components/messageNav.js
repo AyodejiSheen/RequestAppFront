@@ -2,13 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import UIContext from '../context/UI/context'
 import { motion, AnimatePresence } from "framer-motion"; //check note.txt for notes on framer motion
 
-import img1 from '../media/messages-1.jpg'
-import img2 from '../media/messages-2.jpg'
-import img3 from '../media/messages-3.jpg'
 import UserContext from '../context/user/context';
 
 
-
+import male from '../media/male.jpg'
+import female from '../media/female.jpg'
 
 
 
@@ -19,7 +17,7 @@ export const MessageNav = (props) => {
     let { showMsg } = props;
 
     let { notifications } = useContext(UserContext)
-
+    let { user } = useContext(UserContext)
 
     return (
         <>
@@ -54,7 +52,7 @@ export const MessageNav = (props) => {
                                                             <div className='p-4 cursor-pointer hover:bg-purple-50'>
                                                                 <div className='flex gap-4'>
                                                                     <div className='w-13'>
-                                                                        <img src={img1} alt="img1" className='w-12 h-12 rounded-full'></img>
+                                                                        <img src={ user.gender === "male" ? male : female} alt="" className='w-12 h-12 rounded-full'></img>
                                                                     </div>
 
                                                                     <div className='text-gray-800 dark:text-gray-300 flex-1 text-sm space-y-1'>

@@ -47,7 +47,8 @@ const RequestState = (props) => {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
-            UserId: user.id
+            UserId: user.id,
+            gender:user.gender
         }
         await axios.post(`${baseUrl.baseUrl}/request`, data, {
             headers: { accessToken: token }

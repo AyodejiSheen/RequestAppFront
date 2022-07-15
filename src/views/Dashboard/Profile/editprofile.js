@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react'
-import img1 from '../../../media/messages-1.jpg'
 import { Formik, Form, Field, ErrorMessage } from "formik";   //to make use of formik to handle the form creation for the posts
 import * as Yup from 'yup'
 import UserContext from '../../../context/user/context'
 
+
+import male from '../../../media/male.jpg'
+import female from '../../../media/female.jpg'
 
 
 
@@ -47,7 +49,7 @@ export const EditProfile = (props) => {
                 <Form>
                     <div className='md:flex md:space-x-10 lg:space-x-20 xl:space-x-24 items-center mb-6'>
                         <div className='w-32 space-y-3'>
-                            <img src={img1} alt="profile pics" />
+                            <img src={user.gender === "male" ? male : female} alt="profile pics" />
                             <div className='flex space-x-4 justify-center text-purple-600 '>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="cursor-pointer h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />

@@ -9,6 +9,9 @@ import { ProfileNav } from "../components/profileNav";
 import UserContext from "../context/user/context";
 import RequestContext from "../context/requests/context";
 
+import male from '../media/male.jpg'
+import female from '../media/female.jpg'
+
 
 
 export const Navbar = () => {
@@ -16,11 +19,12 @@ export const Navbar = () => {
     let { isDark } = useContext(UIContext);
     let { handleAuth, notifications } = useContext(UserContext);
     let { allRequests } = useContext(RequestContext);
+    let { user, authState } = useContext(UserContext)
 
     const [mobileNav, setMobileNav] = useState(false);
     const [showMsg, setShowMsg] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
-    
+
 
     const toggleNav = () => {
         setMobileNav(!mobileNav)
@@ -37,10 +41,10 @@ export const Navbar = () => {
 
     const navigate = useNavigate()
 
-    
-  useEffect( () => {
-     handleAuth();
-  }, []);
+
+    useEffect(() => {
+        handleAuth();
+    }, []);
 
 
 
@@ -146,12 +150,12 @@ export const Navbar = () => {
 
                                 <div className="px-6 my-6">
                                     <NavLink to="create-a-request">
-                                    <button
-                                        onClick={toggleNav} className="flex w-full items-center text-sm font-medium md:text-base justify-between px-4 py-2 md:font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    >
-                                        Make Requests
-                                        <span className="ml-2 text-base" aria-hidden="true">+</span>
-                                    </button>
+                                        <button
+                                            onClick={toggleNav} className="flex w-full items-center text-sm font-medium md:text-base justify-between px-4 py-2 md:font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                                        >
+                                            Make Requests
+                                            <span className="ml-2 text-base" aria-hidden="true">+</span>
+                                        </button>
                                     </NavLink>
                                 </div>
 
@@ -202,10 +206,14 @@ export const Navbar = () => {
 
                                     <div className="relative">
                                         <button onClick={toggleProfile} className="align-middle rounded-full focus:shadow-outline-purple focus:outline-none">
-                                            <img className="object-cover w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;s=aa3a807e1bbdfd4364d1f449eaa96d82" alt="" aria-hidden="true" />
+                                            {
+                                                authState && (
+                                                    <img className="object-cover w-8 h-8 rounded-full" src={user.gender === "male" ? male : female} alt="" aria-hidden="true" />
+                                                )
+                                            }
                                         </button>
 
-                                        <ProfileNav showProfile={showProfile} toggleProfile={toggleProfile}/>
+                                        <ProfileNav showProfile={showProfile} toggleProfile={toggleProfile} />
                                     </div>
                                 </div>
 
@@ -215,9 +223,9 @@ export const Navbar = () => {
 
                         {/* main display */}
                         <main className="relative overflow-y-auto px-6 lg:px-32 md:ml-64 md:mt-20" onClick={() => {
-                            if(showProfile === true){
+                            if (showProfile === true) {
                                 toggleProfile();
-                            }else if(showMsg === true){
+                            } else if (showMsg === true) {
                                 toggleMsg();
                             }
                         }}>

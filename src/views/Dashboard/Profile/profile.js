@@ -4,12 +4,13 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import baseUrl from '../../../baseUrl'
 import UIContext from '../../../context/UI/context'
 import UserContext from '../../../context/user/context'
-import img1 from '../../../media/messages-1.jpg'
 import { ChangePassword } from './changepassword'
 import { EditProfile } from './editprofile'
 import { Settings } from './settings'
 
 
+import male from '../../../media/male.jpg'
+import female from '../../../media/female.jpg'
 
 
 
@@ -83,7 +84,7 @@ export const Profile = () => {
                         <div className='xl:flex space-y-12 xl:space-y-0 xl:space-x-16'>
                             <div className='w-full xl:w-2/5 h-80 dark:bg-gray-800 rounded-md p-8 shadow-lg text-center'>
                                 <div>
-                                    <img src={img1} alt="DP" className='rounded-full mx-auto' />
+                                    <img src={user.gender === "male" ? male : female} alt="DP" className='rounded-full mx-auto w-36' />
                                 </div>
                                 <div className='space-y-3 mt-6 dark:text-white'>
                                     <h2 className='text-4xl font-semibold capitalize'>{eachUser.firstname} {eachUser.lastname}</h2>
