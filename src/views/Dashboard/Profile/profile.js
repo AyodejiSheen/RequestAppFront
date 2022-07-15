@@ -84,7 +84,7 @@ export const Profile = () => {
                         <div className='xl:flex space-y-12 xl:space-y-0 xl:space-x-16'>
                             <div className='w-full xl:w-2/5 h-80 dark:bg-gray-800 rounded-md p-8 shadow-lg text-center'>
                                 <div>
-                                    <img src={user.gender === "male" ? male : female} alt="DP" className='rounded-full mx-auto w-36' />
+                                    <img src={eachUser.gender === "male" ? male : female} alt="DP" className='rounded-full mx-auto w-36' />
                                 </div>
                                 <div className='space-y-3 mt-6 dark:text-white'>
                                     <h2 className='text-4xl font-semibold capitalize'>{eachUser.firstname} {eachUser.lastname}</h2>
