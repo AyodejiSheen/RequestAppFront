@@ -229,7 +229,7 @@ export const Dashboard = () => {
             {/* Dashboard request cards */}
             <div className="xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-x-16 gap-y-10 mt-8 space-y-8 xl:space-y-0 mb-20">
               {
-                skeleton ? (
+                skeleton || allRequests.length === 0 ? (
                   displayRequest
                 ) : (
                   [1, 2, 3, 4, 5, 6].map((n) => <ReqSkeleton key={n} theme={isDark ? "dark" : "light"} />)
@@ -254,7 +254,7 @@ export const Dashboard = () => {
               <motion.div
                 animate={{ x: [-20, 20], y: [0, -10] }}
                 transition={{ x: { yoyo: Infinity, duration: 0.5 }, y: { yoyo: Infinity, duration: 0.25, ease: 'easeInOut' } }}
-                className="w-3 h-3 rounded-full bg-white mx-auto my-1.5"
+                className="w-3 h-3 rounded-full mx-auto my-1.5 mt-32 bg-purple-700"
               >
 
               </motion.div>

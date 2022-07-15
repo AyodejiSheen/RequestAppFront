@@ -138,7 +138,7 @@ export const Requests = () => {
               {/* Dashboard request cards */}
               <div className="xl:grid xl:grid-cols-2 2xl:grid-cols-3 gap-x-16 gap-y-10 mt-8 space-y-8 xl:space-y-0 mb-20">
                 {
-                  skeleton ? (
+                  skeleton  || allRequests.length === 0 ? (
                     displayRequest
                   ) : (
                     [1, 2, 3, 4, 5, 6].map((n) => <ReqSkeleton key={n} theme={isDark ? "dark" : "light"} />)

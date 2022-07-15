@@ -59,6 +59,7 @@ const RequestState = (props) => {
                 }
                 setAlert(res)
             } else {
+                state.isLoading = false;
                 let res = {
                     altType: "success",
                     altMsg: "Your Request is Created!"
@@ -130,9 +131,11 @@ const RequestState = (props) => {
     }
 
 
+
+
     const acceptReq = async (data) => {
         let token = localStorage.getItem('JWTR')
-        await axios.put(`${baseUrl.baseUrl}/request/accept-request`, data, {
+        await axios.post(`${baseUrl.baseUrl}/notify`, data, {
             headers: { accessToken: token }
         }).then((response) => {
             if (response.data.error) {
@@ -142,11 +145,7 @@ const RequestState = (props) => {
                 }
                 setAlert(res)
             } else {
-                dispatch({
-                    type: ACCEPT_REQ
-                });
-
-                axios.post(`${baseUrl.baseUrl}/notify`, data, {
+                axios.put(`${baseUrl.baseUrl}/request/accept-request`, data, {
                     headers: { accessToken: token }
                 }).then((response) => {
                     if (response.data.error) {
@@ -156,8 +155,11 @@ const RequestState = (props) => {
                         }
                         setAlert(res)
                     } else {
-                        console.log(response.data)
+                        dispatch({
+                            type: ACCEPT_REQ
+                        })
                     }
+
                 }).catch((err) => {
                     let res = {
                         altType: "danger",
@@ -188,12 +190,13 @@ const RequestState = (props) => {
                     })
                 }, 1000)
 
-
                 let res = {
                     altType: "success",
                     altMsg: "You have Accepted This Request!"
                 }
                 setAlert(res);
+
+
             }
         }).catch((err) => {
             let res = {
@@ -202,6 +205,7 @@ const RequestState = (props) => {
             }
             setAlert(res)
         })
+
     }
 
 
