@@ -14,7 +14,7 @@ import about2 from '../../media/3d.png'
 
 export const HomePage = () => {
 
-    const [nav, setNav] = useState(true);
+    const [nav, setNav] = useState(falses);
 
     const toggleNav = () => {
         setNav(!nav)
@@ -52,7 +52,7 @@ export const HomePage = () => {
                                         animate={{ y: [0, 50], scale: 1 }}
                                         exit={{ y: [50, 0] }}
                                         transition={{ type: "twin", ease: "easeInOut" }}
-                                        className=" space-y-4 bg-white   py-7  text-lg items-center absolute top-10  w-11/12 mx-5 px-8 left-0">
+                                        className=" space-y-4 bg-white   py-7  text-sm md:text-lg items-center absolute top-10  w-11/12 mx-5 px-8 left-0">
                                         <div><NavLink to="/home">Home</NavLink></div>
                                         <div><NavLink to="/home">Features</NavLink></div>
                                         <div><NavLink to="/home">About</NavLink></div>
@@ -147,7 +147,7 @@ export const HomePage = () => {
                                     What if you could get all your website tasks off your plate and focus only on the fun stuff? Working with Growmodo allows you to scale your marketing and grow faster without becoming a designer or developer yourself.
                                 </p>
                                 <div className="pt-6">
-                                    <NavLink to="/sign-up" className="bg-purple-600 font-medium text-white px-20 py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-purple-600  hover:text-purple-600">See How it Works</NavLink>
+                                    <NavLink to="/sign-up" className="bg-purple-600 font-medium text-white md:px-20 px-16 py-3.5 md:py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-purple-600  hover:text-purple-600">See How it Works</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -162,12 +162,12 @@ export const HomePage = () => {
                         <motion.h2
                             animate={{ scale: [1, .5, 1] }}
                             transition={{ type: "twin", ease: "easeInOut", duration: 0.5 }}
-                            className="w-10/12 md:w-8/12 lg:w-full mx-auto text-4xl md:text-5xl font-medium text-white">Start getting your errand done
+                            className="w-10/12 md:w-8/12 lg:w-full mx-auto text-3xl md:text-5xl font-medium text-white">Start getting your errand done
                         </motion.h2>
 
                         <p className="px-2.5 text-lg md:text-xl lg:px-10">The automated process starts as soon as your regquest is created.</p>
                         <div className="pt-6">
-                            <NavLink to="/sign-up" className="bg-white font-medium text-purple-600 px-20 py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-white  hover:text-white">Get Started Now</NavLink>
+                            <NavLink to="/sign-up" className="bg-white font-medium text-purple-600 md:px-20 px-16 py-3.5 md:py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-white  hover:text-white">Get Started Now</NavLink>
                         </div>
                     </div>
                 </div>
