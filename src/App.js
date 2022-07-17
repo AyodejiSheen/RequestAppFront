@@ -20,6 +20,7 @@ import { ViewRequests } from './views/Dashboard/Requests/ViewRequests';
 import ScrollToTop from './views/scrollToTop';
 import { AcceptedReq } from './views/Dashboard/Requests/AcceptedReq';
 import { PersonReq } from './views/Dashboard/Requests/PersonalReq';
+import { HomePage } from './views/Homepage/landingPage';
 
 
 
@@ -40,7 +41,9 @@ function App() {
       <ScrollToTop/>
       <Routes>
 
-        <Route path='/' element={<Login />}></Route>
+        <Route path='/' element={<HomePage/>}></Route>
+
+        <Route path='/login' element={<Login />}></Route>
 
 
         <Route path='sign-up' element={<Signup />}></Route>

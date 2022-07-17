@@ -24,12 +24,13 @@
   }
 
 
-  
+/* dahsboard */
 .m-top{
   top: 68px;
 }
 
 
+/* pagaination */
 .paginationBttns {
   width: 80%;
   height: 40px;
@@ -56,4 +57,20 @@
 .paginationActive a {
   color: white;
   background-color: #9333ea;
+}
+
+
+/* homepage */
+.hero-section{
+  background-image: url("media/hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section-2{
+  background-image: url("media/section2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
 }
