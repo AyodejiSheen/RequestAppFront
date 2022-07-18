@@ -97,7 +97,7 @@ export const HomePage = () => {
 
             <div className="px-4 text-center mt-12 lg:mt-20 2xl:mt-32">
                 <div className="md:w-3/4 xl:w-6/12 2xl:w-6/12 mx-auto space-y-6">
-                    <h2 className="text-3xl md:text-4xl font-medium">Finally focus on my marketing strategy and delegate </h2>
+                    <h2 className="text-3xl text-center mx-auto font-medium md:text-4xl lg:text-4xl xl:text-5xl md:w-3/4">Finally focus on my marketing strategy and delegate </h2>
 
                     <p className="px-2.5 text-lg md:text-xl lg:px-10">In the old days, your website was the same for everyone. Not anymore. Experiences lets you adapt your website for every audience.</p>
                 </div>
