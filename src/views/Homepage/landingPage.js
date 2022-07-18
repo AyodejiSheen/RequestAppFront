@@ -14,7 +14,7 @@ import about2 from '../../media/3d.png'
 
 export const HomePage = () => {
 
-    const [nav, setNav] = useState(falses);
+    const [nav, setNav] = useState(false);
 
     const toggleNav = () => {
         setNav(!nav)
@@ -147,7 +147,7 @@ export const HomePage = () => {
                                     What if you could get all your website tasks off your plate and focus only on the fun stuff? Working with Growmodo allows you to scale your marketing and grow faster without becoming a designer or developer yourself.
                                 </p>
                                 <div className="pt-6">
-                                    <NavLink to="/sign-up" className="bg-purple-600 font-medium text-white md:px-20 px-16 py-3.5 md:py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-purple-600  hover:text-purple-600">See How it Works</NavLink>
+                                    <NavLink to="/sign-up" className="bg-purple-600 font-medium text-white md:px-20 px-14 py-3.5 md:py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-purple-600  hover:text-purple-600">See How it Works</NavLink>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +167,7 @@ export const HomePage = () => {
 
                         <p className="px-2.5 text-lg md:text-xl lg:px-10">The automated process starts as soon as your regquest is created.</p>
                         <div className="pt-6">
-                            <NavLink to="/sign-up" className="bg-white font-medium text-purple-600 md:px-20 px-16 py-3.5 md:py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-white  hover:text-white">Get Started Now</NavLink>
+                            <NavLink to="/sign-up" className="bg-white font-medium text-purple-600 md:px-20 px-14 py-3.5 md:py-5 rounded-full text-base hover:bg-right hover:bg-transparent hover:border-2 hover:border-white  hover:text-white">Get Started Now</NavLink>
                         </div>
                     </div>
                 </div>
