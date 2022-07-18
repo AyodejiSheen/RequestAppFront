@@ -20,7 +20,7 @@ export const ReqSkeleton = (props) => {
                     <div className='flex flex-wrap  justify-between items-center'>
                         <div className='flex flex-wrap gap-6 items-center'>
                             <div className='w-14 h-14 rounded-full dark:bg-gray-700 bg-neutral-100'></div>
-                            <div className=' w-44 h-8 dark:bg-gray-700 bg-neutral-100 rounded-lg'></div>
+                            <div className=' w-36 md:w-44 h-8 dark:bg-gray-700 bg-neutral-100 rounded-lg'></div>
                         </div>
 
                         <div>

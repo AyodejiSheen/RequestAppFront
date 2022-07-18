@@ -7,6 +7,7 @@ import UserContext from '../../../context/user/context'
 import { ChangePassword } from './changepassword'
 import { EditProfile } from './editprofile'
 import { Settings } from './settings'
+import { motion, AnimatePresence } from "framer-motion"; //check note.txt for notes on framer motion
 
 
 import male from '../../../media/male.jpg'
@@ -45,7 +46,7 @@ export const Profile = () => {
 
     useEffect(() => {
         let token = localStorage.getItem('JWTR')
-         axios.get(`${baseUrl.baseUrl}/user/profile/${id}`, {
+        axios.get(`${baseUrl.baseUrl}/user/profile/${id}`, {
             headers: { accessToken: token }
         }).then((response) => {
             if (response.data.error) {
@@ -94,7 +95,7 @@ export const Profile = () => {
 
                             <div className='w-full xl:w-3/5 dark:bg-gray-800  pb-6  rounded-md shadow-lg'>
                                 <div className=''>
-                                    <div className=''> 
+                                    <div className=''>
                                         <div className='block lg:flex text-center lg:text-left px-8 space-y-3 pt-6 lg:space-y-0 lg:py-3'>
                                             <button onClick={() => changeTab("overview")} className='dark:text-gray-400 focus:dark:text-gray-100 flex-1 focus:border-b-2 px-3 pb-2 focus:font-medium focus:border-purple-600 '>Overview</button>
                                             {
@@ -151,7 +152,7 @@ export const Profile = () => {
                                                     <div className='flex  flex-wrap space-x-10 md:space-x-24 items-center'>
                                                         <p className='w-32 font-bold text-gray-500'>Phone Number</p>
                                                         <a href={`tel:${eachUser.phone}`} className='flex-1'>{eachUser.phone} <span className='text-xs text-gray-600'>Click to place a call</span></a>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,7 +199,15 @@ export const Profile = () => {
 
                     </div> :
 
-                    <p>Loading.....</p>
+                    (
+                        <motion.div
+                            animate={{ x: [-20, 20], y: [0, -10] }}
+                            transition={{ x: { yoyo: Infinity, duration: 0.5 }, y: { yoyo: Infinity, duration: 0.25, ease: 'easeInOut' } }}
+                            className="w-3 h-3 rounded-full mx-auto my-1.5 mt-32 bg-purple-700"
+                        >
+
+                        </motion.div>
+                    )
 
             }
 
